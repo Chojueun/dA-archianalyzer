@@ -1,0 +1,87 @@
+{
+  "pdf_summary": "이 문서는 HMC(현대자동차) 인도기술연구소 2025년 프로젝트의 수행계획서입니다. dA Group이 담당하는 이 프로젝트는 현대차 자산실의 기획보고를 지원하는 것이 목적입니다.\n\n주요 내용:\n- **프로젝트 구조**: 4주간의 단계별 수행 일정으로 구성 (8월 19일 셋업부터 9월 14일까지)\n- **수행 전략**: 현대차 자산실과의 지속적인 소통을 통한 보고전략 수립에 중점\n- **조직 구성**: 3개 파트로 구분\n  - Branding 파트: 정보분석, 사업방향 수립, 기획전략 제시\n  - Architecture 파트: 조건분석, 데이터취합, 모델제시\n  - Technology 파트: AI 모델 테스트, Vision 모델 제시, 기술검증\n- **핵심 목표**: 연구소 확장의 당위성과 미래비전을 예측·검증할 수 있는 모델 제시\n- **운영 방식**: 기획전략, 건축모델검증, AI기반 모델 시연을 통한 부서 간 TF조직 운영",
+  "user_inputs": {
+    "project_name": "",
+    "owner": "",
+    "site_location": "",
+    "site_area": "",
+    "zoning": "",
+    "building_type": "",
+    "project_goal": ""
+  },
+  "step_results": {},
+  "cot_history": [],
+  "step_history": [],
+  "current_step_index": 0,
+  "workflow_steps": [],
+  "removed_steps": [],
+  "added_steps": [],
+  "analysis_started": false,
+  "analysis_completed": false,
+  "show_next_step_button": false,
+  "current_step_display_data": null,
+  "current_step_outputs": {},
+  "web_search_settings": {},
+  "uploaded_pdf": null,
+  "site_fields": {
+    "site_area": "대지면적: 텍스트에서 대지면적에 대한 구체적인 정보를 찾을 수 없습니다. (형식 검증 필요)",
+    "site_address": "주소: 인도 소재 HMC 기술연구소로 추정되나, 구체적인 주소 정보는 제공되지 않았습니다. (형식 검증 필요)",
+    "site_slope": "대지의 경사, 고도, 방위에 대한 정보가 텍스트에 포함되어 있지 않습니다.",
+    "zoning": "용도지역이나 지구단위계획에 대한 정보가 텍스트에 명시되어 있지 않습니다.",
+    "restrictions": "고도제한, 일조권, 환경, 소음 등 특이 규제사항에 대한 언급이 없습니다.",
+    "traffic": "주변 도로, 교통, 진출입에 관한 정보가 제공되지 않았습니다.",
+    "precedent_comparison": "텍스트는 주로 프로젝트 수행 일정과 전략에 관한 내용으로, 유사 연수원·교육시설과의 비교 분석은 포함되어 있지 않습니다. 다만 \"연구소 확장에 대한 당위성과 미래비젼을 예측·검증할 수 있는 모델을 제시\"한다는 언급이 있어, 향후 벤치마킹 분석이 계획되어 있을 것으로 보입니다.",
+    "risk_factors": "현재 텍스트에서는 대지나 법규 관련 구체적인 리스크 요인을 파악할 수 없습니다. 다만 인도 현지 법규 및 규제 환경에 대한 검토가 필요할 것으로 판단됩니다."
+  },
+  "pdf_analysis_result": {
+    "summary": "이 문서는 HMC(현대자동차) 인도기술연구소 2025년 프로젝트의 수행계획서입니다. dA Group이 담당하는 이 프로젝트는 현대차 자산실의 기획보고를 지원하는 것이 목적입니다.\n\n주요 내용:\n- **프로젝트 구조**: 4주간의 단계별 수행 일정으로 구성 (8월 19일 셋업부터 9월 14일까지)\n- **수행 전략**: 현대차 자산실과의 지속적인 소통을 통한 보고전략 수립에 중점\n- **조직 구성**: 3개 파트로 구분\n  - Branding 파트: 정보분석, 사업방향 수립, 기획전략 제시\n  - Architecture 파트: 조건분석, 데이터취합, 모델제시\n  - Technology 파트: AI 모델 테스트, Vision 모델 제시, 기술검증\n- **핵심 목표**: 연구소 확장의 당위성과 미래비전을 예측·검증할 수 있는 모델 제시\n- **운영 방식**: 기획전략, 건축모델검증, AI기반 모델 시연을 통한 부서 간 TF조직 운영",
+    "site_fields": {
+      "site_area": "대지면적: 텍스트에서 대지면적에 대한 구체적인 정보를 찾을 수 없습니다. (형식 검증 필요)",
+      "site_address": "주소: 인도 소재 HMC 기술연구소로 추정되나, 구체적인 주소 정보는 제공되지 않았습니다. (형식 검증 필요)",
+      "site_slope": "대지의 경사, 고도, 방위에 대한 정보가 텍스트에 포함되어 있지 않습니다.",
+      "zoning": "용도지역이나 지구단위계획에 대한 정보가 텍스트에 명시되어 있지 않습니다.",
+      "restrictions": "고도제한, 일조권, 환경, 소음 등 특이 규제사항에 대한 언급이 없습니다.",
+      "traffic": "주변 도로, 교통, 진출입에 관한 정보가 제공되지 않았습니다.",
+      "precedent_comparison": "텍스트는 주로 프로젝트 수행 일정과 전략에 관한 내용으로, 유사 연수원·교육시설과의 비교 분석은 포함되어 있지 않습니다. 다만 \"연구소 확장에 대한 당위성과 미래비젼을 예측·검증할 수 있는 모델을 제시\"한다는 언급이 있어, 향후 벤치마킹 분석이 계획되어 있을 것으로 보입니다.",
+      "risk_factors": "현재 텍스트에서는 대지나 법규 관련 구체적인 리스크 요인을 파악할 수 없습니다. 다만 인도 현지 법규 및 규제 환경에 대한 검토가 필요할 것으로 판단됩니다."
+    },
+    "pdf_type": {
+      "pdf_type": "general_document",
+      "document_category": "project_planning_document"
+    },
+    "quality": {
+      "completeness": 100.0,
+      "filled_fields": 8,
+      "total_fields": 8,
+      "quality_score": 100,
+      "grade": "A+",
+      "confidence_level": "높음"
+    },
+    "metadata": {
+      "analysis_timestamp": "2025-08-27T14:00:05.645113",
+      "text_length": 1150,
+      "status": "success"
+    }
+  },
+  "pdf_quality_report": {
+    "quality_assessment": {
+      "completeness": 100.0,
+      "filled_fields": 8,
+      "total_fields": 8,
+      "quality_score": 100,
+      "grade": "A+",
+      "confidence_level": "높음"
+    },
+    "pdf_type": {
+      "pdf_type": "general_document",
+      "document_category": "project_planning_document"
+    },
+    "recommendations": [
+      "PDF 분석 품질이 양호합니다."
+    ]
+  },
+  "selected_purpose": null,
+  "selected_objectives": [],
+  "last_saved": "2025-08-27T14:00:05.648118",
+  "last_updated": "2025-08-27T14:00:05.649118"
+}

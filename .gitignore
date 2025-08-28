@@ -1,0 +1,55 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+*.env
+*.env.*
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# PyMuPDF / temp data
+*.pdf~
+*.bak
+*.tmp
+
+# Streamlit secrets only (config.toml은 포함)
+.streamlit/secrets.toml
+
+# Test cache
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+.mypy_cache/
+.tox/
+.nox/
+
+# Python tooling
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Misc
+*.sqlite3
+db.sqlite3
+*.db
