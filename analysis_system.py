@@ -864,7 +864,7 @@ class AnalysisSystem:
         )
 
     def _load_recommended_cot_order(self) -> Dict[str, int]:
-        """권장 CoT 순서 매핑 (20개 블록으로 수정)"""
+        """권장 CoT 순서 매핑 (21개 블록으로 수정)"""
         return {
             "document_analyzer": 1,           # doc_collector → document_analyzer
             "requirement_analyzer": 2,        # requirements_extractor → requirement_analyzer

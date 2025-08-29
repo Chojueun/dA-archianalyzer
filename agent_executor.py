@@ -157,6 +157,8 @@ def run_strategy_recommendation(full_prompt):
     
     return execute_with_retry(_run)
 
+
+
 def execute_agent(prompt):
     """기존 DSPy 기반 실행 함수 (하위 호환성)"""
     def _run():
