@@ -27,6 +27,12 @@ from agent_executor import (
     run_ai_reasoning,
     run_precedent_comparison,
     run_strategy_recommendation,
+    run_hyderabad_campus_expansion_analysis,
+    run_hyderabad_research_infra_strategy,
+    run_hyderabad_talent_collaboration_infra,
+    run_hyderabad_welfare_branding_environment,
+    run_hyderabad_security_zoning_plan,
+    run_hyderabad_masterplan_roadmap,
 )
 from utils import extract_summary, extract_insight
 from utils_pdf import (
@@ -2729,6 +2735,32 @@ def generate_optimization_analysis_with_external_content(user_inputs, cot_histor
 """
     
     return execute_agent(optimization_prompt)
+
+def execute_analysis_step(step_id: str, full_prompt: str) -> str:
+    """분석 단계 실행"""
+    # 기존 블록들
+    if step_id == "document_analyzer":
+        return run_document_analyzer(full_prompt)
+    elif step_id == "requirement_analyzer":
+        return run_requirement_analyzer(full_prompt)
+    # ... existing blocks ...
+    
+    # 하이데라바드 프로젝트 전용 블록들 추가
+    elif step_id == "hyderabad_campus_expansion_analysis":
+        return run_hyderabad_campus_expansion_analysis(full_prompt)
+    elif step_id == "hyderabad_research_infra_strategy":
+        return run_hyderabad_research_infra_strategy(full_prompt)
+    elif step_id == "hyderabad_talent_collaboration_infra":
+        return run_hyderabad_talent_collaboration_infra(full_prompt)
+    elif step_id == "hyderabad_welfare_branding_environment":
+        return run_hyderabad_welfare_branding_environment(full_prompt)
+    elif step_id == "hyderabad_security_zoning_plan":
+        return run_hyderabad_security_zoning_plan(full_prompt)
+    elif step_id == "hyderabad_masterplan_roadmap":
+        return run_hyderabad_masterplan_roadmap(full_prompt)
+    
+    else:
+        return f"⚠️ 알 수 없는 분석 단계: {step_id}"
 
 def main():
     """메인 함수"""

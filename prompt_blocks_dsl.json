@@ -2689,6 +2689,269 @@
           }
         }
       }
+    },
+    {
+      "id": "hyderabad_campus_expansion_analysis",
+      "title": "하이데라바드 캠퍼스 확장성 분석",
+      "description": "현 부지 vs 인접 부지 매입, 수평/수직 확장 대안 및 제약사항 검토",
+      "content_dsl": {
+        "goal": "캠퍼스 확장 시나리오별 장단점과 실행 우선순위 도출",
+        "role": "확장 전략 분석 전문가",
+        "context": "현 부지는 과밀화 상태, 인접 부지 매입 여부 및 수직·수평 확장 대안이 주요 의사결정 요소",
+        "source": ["user_inputs", "pdf_summary", "site_regulation_analysis"],
+        "tasks": [
+          "현 부지 내 증축/리모델링 가능성 검토",
+          "인접 부지 매입 시 장단점 분석",
+          "수직 vs 수평 확장 대안 비교",
+          "확장 시 제약 요인 식별 및 실행 우선순위 도출"
+        ],
+        "analysis_framework": {
+          "approach": "시나리오 비교 분석",
+          "methodology": "SWOT 및 ROI 기반 우선순위 평가",
+          "criteria": ["비용", "확장성", "보안", "직원경험", "브랜딩"]
+        },
+        "output_structure": [
+          "확장 시나리오별 장단점 표",
+          "실행 우선순위 목록",
+          "종합 해설 및 결론"
+        ],
+        "quality_standards": {
+          "constraints": ["모든 시나리오는 ROI 추정 포함", "표 하단에 최소 5문장 해설"],
+          "required_phrases": ["(AI 추론)", "근거·출처", "결론"],
+          "validation_rules": ["확장 시나리오는 최소 2개 이상 제시"]
+        },
+        "presentation": {
+          "language_tone": "전략적, 분석 중심",
+          "target_format": "비교표 + 해설",
+          "visual_elements": ["확장 시나리오 매트릭스", "ROI 우선순위 다이어그램"],
+          "explanatory_template": "방법론 설명 → (AI 추론) 시나리오별 인사이트 → 근거·출처 → 결론/우선순위"
+        },
+        "templates": {
+          "tables": {
+            "확장_시나리오_비교": ["시나리오", "장점", "단점", "ROI", "근거·출처"]
+          }
+        }
+      }
+    },
+    {
+      "id": "hyderabad_research_infra_strategy",
+      "title": "하이데라바드 연구 기능 강화 및 인프라 전략",
+      "description": "분해분석실, 시험차 공간, 워크샵 등 연구 인프라 확충 방안",
+      "content_dsl": {
+        "goal": "연구시설 기능 강화와 단계별 확충 계획 수립",
+        "role": "연구 인프라 계획 전문가",
+        "context": "차량 개발 및 전동화 전환을 위한 연구 공간 확충 필요",
+        "source": ["pdf_summary", "hyderabad_campus_expansion_analysis"],
+        "tasks": [
+          "주요 연구 기능별 필요 면적 추정",
+          "시설 확충 우선순위 설정",
+          "단계별 확충 로드맵 제안"
+        ],
+        "analysis_framework": {
+          "approach": "기능별 수요-공급 격차 분석",
+          "methodology": "필수성·시급성 평가",
+          "criteria": ["필수성", "시급성", "투자효과"]
+        },
+        "output_structure": [
+          "기능별 필요 면적·시설 정리표",
+          "단계별 확충안",
+          "해설 및 결론"
+        ],
+        "quality_standards": {
+          "constraints": ["필요면적은 수치 기반으로 제시", "표 하단에 해설 필수"],
+          "required_phrases": ["(AI 추론)", "근거·출처"]
+        },
+        "presentation": {
+          "language_tone": "기술적, 실무적",
+          "target_format": "기능별 표 + 단계별 계획",
+          "visual_elements": ["연구 인프라 확충 다이어그램"],
+          "explanatory_template": "격차 분석 → (AI 추론) 확충안 → 근거·출처 → 결론"
+        },
+        "templates": {
+          "tables": {
+            "연구기능_필요면적": ["연구 기능", "현 상태", "추가 필요면적", "확충 방법", "근거·출처"]
+          }
+        }
+      }
+    },
+    {
+      "id": "hyderabad_talent_collaboration_infra",
+      "title": "하이데라바드 인재 육성 및 외부 협업 인프라",
+      "description": "교육·세미나·산학협력 및 이노베이션 센터 구축 방안",
+      "content_dsl": {
+        "goal": "내부 인재 육성과 외부 협업 촉진을 위한 공간 전략 도출",
+        "role": "인재·협업 전략 전문가",
+        "context": "젊은 인재 비중 높고 이직률 높은 환경 → 교육·협업 인프라 필요",
+        "source": ["pdf_summary", "hyderabad_research_infra_strategy"],
+        "tasks": [
+          "인재 육성을 위한 교육/세미나 공간 제안",
+          "외부 협업 및 이노베이션 센터 검토",
+          "브랜딩 효과 정리"
+        ],
+        "analysis_framework": {
+          "approach": "인적자원 및 협업 인프라 분석",
+          "methodology": "공간-프로그램 매핑",
+          "criteria": ["육성효과", "협업효과", "브랜딩효과"]
+        },
+        "output_structure": [
+          "필요 프로그램 매핑표",
+          "협업 인프라 계획서",
+          "브랜딩 효과 해설"
+        ],
+        "quality_standards": {
+          "constraints": ["프로그램별 공간 요구사항 구체화", "표 하단에 해설 필수"],
+          "required_phrases": ["(AI 추론)", "근거·출처", "결론"],
+          "validation_rules": ["인재 육성과 협업 효과 균형 고려"]
+        },
+        "presentation": {
+          "language_tone": "전략적, 인재 중심",
+          "target_format": "프로그램별 표 + 인프라 계획",
+          "visual_elements": ["인재 육성 플로우차트", "협업 인프라 다이어그램"],
+          "explanatory_template": "인재 육성 분석 → (AI 추론) 협업 인프라 전략 → 근거·출처 → 결론"
+        },
+        "templates": {
+          "tables": {
+            "인재육성_프로그램": ["프로그램", "필요 공간", "기대 효과", "구현 방안", "근거·출처"],
+            "협업_인프라": ["인프라 유형", "필요 면적", "주요 기능", "운영 방안", "근거·출처"]
+          }
+        }
+      }
+    },
+    {
+      "id": "hyderabad_welfare_branding_environment",
+      "title": "하이데라바드 복지·편의 및 브랜드 경험 환경",
+      "description": "직원 편의시설 및 방문객 브랜드 경험 공간 제안",
+      "content_dsl": {
+        "goal": "직원 몰입·회복 환경과 브랜드 경험 공간 동시 구현",
+        "role": "복지·브랜드 경험 기획자",
+        "context": "현재 편의시설 열악, 브랜드 경험 동선 부재",
+        "source": ["pdf_summary", "hyderabad_talent_collaboration_infra"],
+        "tasks": [
+          "F&B 및 체육시설 개선안 제시",
+          "브랜드 경험 동선 설계",
+          "방문객·직원 편의 균형 전략"
+        ],
+        "analysis_framework": {
+          "approach": "사용자 경험 중심 분석",
+          "methodology": "UX Journey Mapping",
+          "criteria": ["직원만족", "브랜드효과", "운영효율"]
+        },
+        "output_structure": [
+          "편의시설 개선안 표",
+          "브랜드 경험 동선 시나리오",
+          "종합 해설"
+        ],
+        "quality_standards": {
+          "constraints": ["직원과 방문객 니즈 균형 고려", "표 하단에 해설 필수"],
+          "required_phrases": ["(AI 추론)", "근거·출처", "결론"],
+          "validation_rules": ["브랜드 경험과 직원 복지 조화"]
+        },
+        "presentation": {
+          "language_tone": "사용자 중심, 브랜드 지향",
+          "target_format": "시설별 표 + 동선 시나리오",
+          "visual_elements": ["브랜드 경험 동선 맵", "편의시설 배치도"],
+          "explanatory_template": "사용자 니즈 분석 → (AI 추론) 환경 개선안 → 근거·출처 → 결론"
+        },
+        "templates": {
+          "tables": {
+            "편의시설_개선안": ["시설 유형", "현 상태", "개선 방안", "기대 효과", "근거·출처"],
+            "브랜드_경험_동선": ["동선 구간", "경험 요소", "주요 기능", "구현 방안", "근거·출처"]
+          }
+        }
+      }
+    },
+    {
+      "id": "hyderabad_security_zoning_plan",
+      "title": "하이데라바드 보안 및 존잉 계획",
+      "description": "보호/보안/제한 구역별 공간 배치 및 보안 대응 방안",
+      "content_dsl": {
+        "goal": "연구소 보안 환경 강화 및 공간 존잉 체계 설계",
+        "role": "보안 존잉 전문가",
+        "context": "국가핵심기술 포함, 외부 협업 공간과 보안 구역 분리 필요",
+        "source": ["pdf_summary", "hyderabad_campus_expansion_analysis"],
+        "tasks": [
+          "보호/보안/제한 구역별 공간 배치",
+          "위험요인 및 대응방안 정리",
+          "Zoning 다이어그램 작성"
+        ],
+        "analysis_framework": {
+          "approach": "위험도 기반 존잉 계획",
+          "methodology": "Risk Assessment + Security Tiering",
+          "criteria": ["보안등급", "출입통제", "업무연계성"]
+        },
+        "output_structure": [
+          "보안등급별 공간 Zoning 다이어그램",
+          "위험요인/대응방안 표",
+          "결론 해설"
+        ],
+        "quality_standards": {
+          "constraints": ["보안등급별 명확한 구분", "표 하단에 해설 필수"],
+          "required_phrases": ["(AI 추론)", "근거·출처", "결론"],
+          "validation_rules": ["보안과 업무 효율성 균형"]
+        },
+        "presentation": {
+          "language_tone": "보안 중심, 체계적",
+          "target_format": "Zoning 다이어그램 + 위험요인 표",
+          "visual_elements": ["보안 Zoning 다이어그램", "위험요인 매트릭스"],
+          "explanatory_template": "보안 요구사항 분석 → (AI 추론) 존잉 전략 → 근거·출처 → 결론"
+        },
+        "templates": {
+          "tables": {
+            "보안_존잉": ["보안등급", "공간 범위", "출입통제", "보안요구사항", "근거·출처"],
+            "위험요인_대응": ["위험요인", "위험도", "대응방안", "담당자", "근거·출처"]
+          }
+        }
+      }
+    },
+    {
+      "id": "hyderabad_masterplan_roadmap",
+      "title": "하이데라바드 마스터플랜 로드맵",
+      "description": "단계별 인프라 확충 계획 (필수-개선-미래전략)",
+      "content_dsl": {
+        "goal": "우선순위 기반 단계별 확충 로드맵 및 ROI 분석",
+        "role": "마스터플랜 전략가",
+        "context": "캠퍼스 확장 및 기능 강화의 최종 실행계획",
+        "source": [
+          "hyderabad_campus_expansion_analysis",
+          "hyderabad_research_infra_strategy",
+          "hyderabad_talent_collaboration_infra",
+          "hyderabad_welfare_branding_environment",
+          "hyderabad_security_zoning_plan"
+        ],
+        "tasks": [
+          "1단계(필수) 확충안 정리",
+          "2단계(개선) 확충안 정리",
+          "3단계(미래전략) 확충안 정리",
+          "단계별 ROI 평가"
+        ],
+        "analysis_framework": {
+          "approach": "단계별 실행 전략",
+          "methodology": "ROI·우선순위 매트릭스",
+          "criteria": ["투자효과", "시급성", "전략적 적합성"]
+        },
+        "output_structure": [
+          "단계별 실행 로드맵",
+          "ROI 평가표",
+          "종합 결론"
+        ],
+        "quality_standards": {
+          "constraints": ["단계별 명확한 구분", "ROI 정량화", "표 하단에 해설 필수"],
+          "required_phrases": ["(AI 추론)", "근거·출처", "결론"],
+          "validation_rules": ["단계별 의존성 고려", "투자효과 검증"]
+        },
+        "presentation": {
+          "language_tone": "전략적, 실행 중심",
+          "target_format": "단계별 로드맵 + ROI 평가",
+          "visual_elements": ["마스터플랜 로드맵", "ROI 평가 차트"],
+          "explanatory_template": "단계별 분석 → (AI 추론) 실행 전략 → 근거·출처 → 종합 결론"
+        },
+        "templates": {
+          "tables": {
+            "단계별_로드맵": ["단계", "주요 사업", "투자규모", "기대효과", "근거·출처"],
+            "ROI_평가": ["투자 항목", "투자금액", "기대수익", "ROI", "근거·출처"]
+          }
+        }
+      }
     }
   ]
 }

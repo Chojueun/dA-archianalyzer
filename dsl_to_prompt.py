@@ -637,3 +637,62 @@ def prompt_proposal_framework(dsl_block, user_inputs, previous_summary="", pdf_s
     base_prompt = convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
     return base_prompt + "\n\n⚠️ 제안서 프레임워크 설계에 집중하여 분석하세요."
 
+def prompt_hyderabad_campus_expansion_analysis(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 캠퍼스 확장성 분석 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+def prompt_hyderabad_research_infra_strategy(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 연구 인프라 전략 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+def prompt_hyderabad_talent_collaboration_infra(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 인재 육성 및 협업 인프라 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+def prompt_hyderabad_welfare_branding_environment(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 복지 및 브랜드 환경 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+def prompt_hyderabad_security_zoning_plan(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 보안 및 존잉 계획 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+def prompt_hyderabad_masterplan_roadmap(dsl_block, user_inputs, previous_summary="", pdf_summary=None, site_fields=None):
+    """하이데라바드 마스터플랜 로드맵 프롬프트 생성"""
+    return convert_dsl_to_prompt(dsl_block, user_inputs, previous_summary, pdf_summary, site_fields)
+
+# 블록 ID와 함수 매핑 업데이트
+BLOCK_FUNCTION_MAPPING = {
+    "requirement_analyzer": prompt_requirement_table,
+    "ai_reasoning": prompt_ai_reasoning,
+    "precedent_comparison": prompt_precedent_comparison,
+    "strategy_recommendation": prompt_strategy_recommendation,
+    "task_comprehension": prompt_task_comprehension,
+    "site_regulation_analysis": prompt_site_regulation_analysis,
+    "precedent_benchmarking": prompt_precedent_benchmarking,
+    "design_trend_application": prompt_design_trend_application,
+    "mass_strategy": prompt_mass_strategy,
+    "concept_development": prompt_concept_development,
+    "schematic_space_plan": prompt_schematic_space_plan,
+    "design_requirement_summary": prompt_design_requirement_summary,
+    "area_programming": prompt_area_programming,
+    "cost_estimation": prompt_cost_estimation,
+    "architectural_branding_identity": prompt_architectural_branding_identity,
+    "ux_circulation_simulation": prompt_ux_circulation_simulation,
+    "flexible_space_strategy": prompt_flexible_space_strategy,
+    "doc_collector": prompt_doc_collector,
+    "context_analyzer": prompt_context_analyzer,
+    "requirements_extractor": prompt_requirements_extractor,
+    "compliance_analyzer": prompt_compliance_analyzer,
+    "risk_strategist": prompt_risk_strategist,
+    "action_planner": prompt_action_planner,
+    "competitor_analyzer": prompt_competitor_analyzer,
+    "proposal_framework": prompt_proposal_framework,
+    "hyderabad_campus_expansion_analysis": prompt_hyderabad_campus_expansion_analysis,
+    "hyderabad_research_infra_strategy": prompt_hyderabad_research_infra_strategy,
+    "hyderabad_talent_collaboration_infra": prompt_hyderabad_talent_collaboration_infra,
+    "hyderabad_welfare_branding_environment": prompt_hyderabad_welfare_branding_environment,
+    "hyderabad_security_zoning_plan": prompt_hyderabad_security_zoning_plan,
+    "hyderabad_masterplan_roadmap": prompt_hyderabad_masterplan_roadmap,
+}
+

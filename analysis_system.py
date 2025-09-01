@@ -888,7 +888,7 @@ class AnalysisSystem:
         )
 
     def _load_recommended_cot_order(self) -> Dict[str, int]:
-        """권장 CoT 순서 매핑 (24개 블록으로 수정)"""
+        """권장 CoT 순서 매핑 (하이데라바드 블록 추가)"""
         return {
             "document_analyzer": 1,           # doc_collector → document_analyzer
             "requirement_analyzer": 2,        # requirements_extractor → requirement_analyzer
@@ -911,7 +911,15 @@ class AnalysisSystem:
             "action_planner": 19,             # 순서 조정
             "site_environment_analysis": 20,  # 새로 추가
             "structure_technology_analysis": 21, # 새로 추가
-            "proposal_framework": 22          # 순서 조정
+            "proposal_framework": 22,          # 순서 조정
+            
+            # 하이데라바드 프로젝트 전용 블록들 추가
+            "hyderabad_campus_expansion_analysis": 23,
+            "hyderabad_research_infra_strategy": 24,
+            "hyderabad_talent_collaboration_infra": 25,
+            "hyderabad_welfare_branding_environment": 26,
+            "hyderabad_security_zoning_plan": 27,
+            "hyderabad_masterplan_roadmap": 28
         }
 
     def sort_steps_by_recommended_order(self, steps: List[AnalysisStep]) -> List[AnalysisStep]:
