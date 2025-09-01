@@ -27,6 +27,7 @@ class PurposeType(Enum):
     SPORTS_FACILITY = "운동시설"
     OFFICE_FACILITY = "업무시설"
     ACCOMMODATION_FACILITY = "숙박시설"
+    RESIDENTIAL_FACILITY = "공동주택"
     OTHER_FACILITY = "기타시설"
 
 class ObjectiveType(Enum):
@@ -330,6 +331,14 @@ class AnalysisSystem:
                 ObjectiveType.OPERATION_MANAGEMENT,
                 ObjectiveType.PLANNING_CONCEPT_DESIGN
             ],
+            PurposeType.RESIDENTIAL_FACILITY: [
+            ObjectiveType.PLANNING_CONCEPT_DESIGN,
+            ObjectiveType.MARKET_PROFITABILITY_INVESTMENT,
+            ObjectiveType.LEGAL_PERMIT,
+            ObjectiveType.SPACE_CIRCULATION_UX,
+            ObjectiveType.OPERATION_MANAGEMENT,
+            ObjectiveType.OTHER
+            ],
             PurposeType.OTHER_FACILITY: [
                 ObjectiveType.PLANNING_CONCEPT_DESIGN,
                 ObjectiveType.OPERATION_MANAGEMENT
@@ -340,7 +349,7 @@ class AnalysisSystem:
         """전용도·전목적 공통 필수 블록"""
         return [
             AnalysisStep(
-                id="document_analyzer",  # requirement_analysis → document_analyzer로 수정
+                id="document_analyzer",
                 title="문서 분석 및 건축주 의도 추론",
                 description="입찰/계약 문서의 구조, 요구사항, 언어 패턴을 종합 분석하여 건축주의 명시적/암묵적 의도를 파악",
                 is_required=True,
@@ -348,7 +357,7 @@ class AnalysisSystem:
                 category="문서분석"
             ),
             AnalysisStep(
-                id="requirement_analyzer",  # 새로운 블록 추가
+                id="requirement_analyzer",
                 title="요구사항 종합 분석 및 전략 도출",
                 description="문서에서 추출된 요구사항을 종합 분석하여 설계 전략과 실행 가능한 방안 도출",
                 is_required=True,
@@ -372,11 +381,19 @@ class AnalysisSystem:
                 category="리스크분석"
             ),
             AnalysisStep(
-                id="site_regulation_analysis",
-                title="대지 환경 및 법규 분석",
-                description="대상 대지의 잠재력과 제약사항을 다각적으로 분석해 후속 설계 전략의 현실적 기반을 마련",
+                id="site_environment_analysis",
+                title="대지 환경 분석",
+                description="지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
                 is_required=True,
                 order=5,
+                category="대지분석"
+            ),
+            AnalysisStep(
+                id="site_regulation_analysis",
+                title="대지 법규 분석",
+                description="대상 대지의 법적 제약사항과 규제 요건을 분석하여 설계 시 준수해야 할 법규 기반을 마련",
+                is_required=True,
+                order=6,
                 category="법규분석"
             ),
             AnalysisStep(
@@ -384,7 +401,7 @@ class AnalysisSystem:
                 title="규정 준수 및 적법성 분석",
                 description="모든 설계 요소가 관련 규정을 준수하는지 검증하고 적법성 확보",
                 is_required=True,
-                order=6,
+                order=7,
                 category="규정준수"
             ),
             AnalysisStep(
@@ -392,7 +409,7 @@ class AnalysisSystem:
                 title="설계 컨셉 개발 및 평가",
                 description="프로젝트의 핵심 아이디어와 설계 컨셉을 개발하고 평가하여 최적 방안 도출",
                 is_required=True,
-                order=7,
+                order=8,
                 category="컨셉개발"
             ),
             AnalysisStep(
@@ -400,7 +417,7 @@ class AnalysisSystem:
                 title="건축설계 방향 및 매스(Mass) 전략",
                 description="전 단계 분석 결과를 통합해 건축설계의 핵심 컨셉과 최적 매스 전략을 도출",
                 is_required=True,
-                order=8,
+                order=9,
                 category="매스전략"
             ),
             AnalysisStep(
@@ -408,7 +425,7 @@ class AnalysisSystem:
                 title="스키매틱 공간 계획",
                 description="설계 컨셉을 바탕으로 한 스키매틱 공간 계획 수립",
                 is_required=True,
-                order=9,
+                order=10,
                 category="공간계획"
             ),
             AnalysisStep(
@@ -416,7 +433,7 @@ class AnalysisSystem:
                 title="면적 프로그래밍 및 공간 배분",
                 description="수요 기반 분석과 시장/법적 기준을 바탕으로 최적의 공간구성과 면적 배분안을 도출",
                 is_required=True,
-                order=10,
+                order=11,
                 category="면적계획"
             ),
             AnalysisStep(
@@ -424,7 +441,7 @@ class AnalysisSystem:
                 title="비용 추정 및 경제성 분석",
                 description="연면적, 용도, 적용 공법 등 입력값을 바탕으로 개략 공사비와 비용구조를 산출하고, 운영비, 관리비, 투자수익률 등 주요 재무지표 기반으로 경제성·운영효율성을 평가",
                 is_required=True,
-                order=11,
+                order=12,
                 category="원가분석"
             )
         ]
@@ -735,6 +752,48 @@ class AnalysisSystem:
                     category="요구사항정리"
                 )
             ],
+            PurposeType.RESIDENTIAL_FACILITY: [
+            AnalysisStep(
+                id="site_environment_analysis",
+                title="대지 환경 분석",
+                description="지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
+                is_recommended=True,
+                order=9,
+                category="대지분석"
+            ),
+            AnalysisStep(
+                id="precedent_benchmarking",
+                title="선진사례 벤치마킹 및 최적 운영전략",
+                description="국내외 유사 프로젝트 사례를 심층 분석해 차별화 요소와 최적 운영 방안을 도출",
+                is_recommended=True,
+                order=10,
+                category="벤치마킹"
+            ),
+            AnalysisStep(
+                id="design_trend_application",
+                title="통합 디자인 트렌드 적용 전략",
+                description="건축·인테리어·조경 분야의 핵심 트렌드와 실현 가능한 적용 전략을 제시",
+                is_recommended=True,
+                order=11,
+                category="디자인트렌드"
+            ),
+            AnalysisStep(
+                id="architectural_branding_identity",
+                title="건축적 차별화·브랜딩·정체성 전략",
+                description="상징성, 로컬리티, 테마, 감성 건축 등 차별화 포인트를 반영한 프로젝트 고유의 브랜딩 및 정체성 전략을 도출",
+                is_recommended=True,
+                order=12,
+                category="브랜딩전략"
+            ),
+            AnalysisStep(
+                id="design_requirement_summary",
+                title="최종 설계 요구사항 및 가이드라인",
+                description="분석 결과를 바탕으로 실제 설계에 적용 가능한 요구사항과 가이드라인을 구조화",
+                is_recommended=True,
+                order=13,
+                category="요구사항정리"
+            )
+            ],
             PurposeType.OTHER_FACILITY: [
                 AnalysisStep(
                     id="precedent_benchmarking",
@@ -807,27 +866,11 @@ class AnalysisSystem:
                 category="경쟁분석"
             ),
             AnalysisStep(
-                id="proposal_framework",
-                title="제안서 프레임워크 설계",
-                description="분석 결과를 바탕으로 제안서 구조와 핵심 메시지를 설계",
-                is_optional=True,
-                order=21,
-                category="제안서설계"
-            ),
-            AnalysisStep(
-                id="site_environment_analysis",
-                title="대지 환경 분석",
-                description="지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
-                is_optional=True,
-                order=22,
-                category="대지분석"
-            ),
-            AnalysisStep(
                 id="structure_technology_analysis",
                 title="구조 기술 분석",
                 description="구조 시스템과 기술적 요구사항을 분석하여 최적의 구조 방안을 도출",
                 is_optional=True,
-                order=23,
+                order=21,
                 category="구조분석"
             ),
             AnalysisStep(
@@ -835,7 +878,7 @@ class AnalysisSystem:
                 title="제안서 프레임워크 설계",
                 description="분석 결과를 바탕으로 제안서 구조와 핵심 메시지를 설계",
                 is_optional=True,
-                order=24,
+                order=22,
                 category="제안서설계"
             )
         ]
@@ -894,24 +937,24 @@ class AnalysisSystem:
             "requirement_analyzer": 2,        # requirements_extractor → requirement_analyzer
             "task_comprehension": 3,          # requirement_analysis → task_comprehension
             "risk_strategist": 4,             # context_analyzer → risk_strategist
-            "site_regulation_analysis": 5,    # 순서 조정
-            "compliance_analyzer": 6,         # 순서 조정
-            "precedent_benchmarking": 7,      # 순서 조정
-            "competitor_analyzer": 8,         # 순서 조정
-            "design_trend_application": 9,    # 순서 조정
-            "mass_strategy": 10,              # 순서 조정
-            "flexible_space_strategy": 11,    # 순서 조정
-            "concept_development": 12,        # 순서 조정
-            "area_programming": 13,           # 순서 조정
-            "schematic_space_plan": 14,       # 순서 조정
-            "ux_circulation_simulation": 15,  # 순서 조정
-            "design_requirement_summary": 16, # 순서 조정
-            "cost_estimation": 17,            # 순서 조정
-            "architectural_branding_identity": 18, # 순서 조정
-            "action_planner": 19,             # 순서 조정
-            "site_environment_analysis": 20,  # 새로 추가
-            "structure_technology_analysis": 21, # 새로 추가
-            "proposal_framework": 22,          # 순서 조정
+            "site_environment_analysis": 5,   # 대지 환경 분석 (필수로 변경)
+            "site_regulation_analysis": 6,    # 대지 법규 분석
+            "compliance_analyzer": 7,         # 순서 조정
+            "precedent_benchmarking": 8,      # 순서 조정
+            "competitor_analyzer": 9,         # 순서 조정
+            "design_trend_application": 10,   # 순서 조정
+            "mass_strategy": 11,              # 순서 조정
+            "flexible_space_strategy": 12,    # 순서 조정
+            "concept_development": 13,        # 순서 조정
+            "area_programming": 14,           # 순서 조정
+            "schematic_space_plan": 15,       # 순서 조정
+            "ux_circulation_simulation": 16,  # 순서 조정
+            "design_requirement_summary": 17, # 순서 조정
+            "cost_estimation": 18,            # 순서 조정
+            "architectural_branding_identity": 19, # 순서 조정
+            "action_planner": 20,             # 순서 조정
+            "structure_technology_analysis": 21, # 구조 기술 분석
+            "proposal_framework": 22,          # 제안서 프레임워크
             
             # 하이데라바드 프로젝트 전용 블록들 추가
             "hyderabad_campus_expansion_analysis": 23,
