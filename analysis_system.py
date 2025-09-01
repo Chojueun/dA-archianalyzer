@@ -753,46 +753,38 @@ class AnalysisSystem:
                 )
             ],
             PurposeType.RESIDENTIAL_FACILITY: [
-            AnalysisStep(
-                id="site_environment_analysis",
-                title="대지 환경 분석",
-                description="지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
-                is_recommended=True,
-                order=9,
-                category="대지분석"
-            ),
-            AnalysisStep(
-                id="precedent_benchmarking",
-                title="선진사례 벤치마킹 및 최적 운영전략",
-                description="국내외 유사 프로젝트 사례를 심층 분석해 차별화 요소와 최적 운영 방안을 도출",
-                is_recommended=True,
-                order=10,
-                category="벤치마킹"
-            ),
-            AnalysisStep(
-                id="design_trend_application",
-                title="통합 디자인 트렌드 적용 전략",
-                description="건축·인테리어·조경 분야의 핵심 트렌드와 실현 가능한 적용 전략을 제시",
-                is_recommended=True,
-                order=11,
-                category="디자인트렌드"
-            ),
-            AnalysisStep(
-                id="architectural_branding_identity",
-                title="건축적 차별화·브랜딩·정체성 전략",
-                description="상징성, 로컬리티, 테마, 감성 건축 등 차별화 포인트를 반영한 프로젝트 고유의 브랜딩 및 정체성 전략을 도출",
-                is_recommended=True,
-                order=12,
-                category="브랜딩전략"
-            ),
-            AnalysisStep(
-                id="design_requirement_summary",
-                title="최종 설계 요구사항 및 가이드라인",
-                description="분석 결과를 바탕으로 실제 설계에 적용 가능한 요구사항과 가이드라인을 구조화",
-                is_recommended=True,
-                order=13,
-                category="요구사항정리"
-            )
+                AnalysisStep(
+                    id="precedent_benchmarking",
+                    title="선진사례 벤치마킹 및 최적 운영전략",
+                    description="국내외 유사 프로젝트 사례를 심층 분석해 차별화 요소와 최적 운영 방안을 도출",
+                    is_recommended=True,
+                    order=9,
+                    category="벤치마킹"
+                ),
+                AnalysisStep(
+                    id="design_trend_application",
+                    title="통합 디자인 트렌드 적용 전략",
+                    description="건축·인테리어·조경 분야의 핵심 트렌드와 실현 가능한 적용 전략을 제시",
+                    is_recommended=True,
+                    order=10,
+                    category="디자인트렌드"
+                ),
+                AnalysisStep(
+                    id="architectural_branding_identity",
+                    title="건축적 차별화·브랜딩·정체성 전략",
+                    description="상징성, 로컬리티, 테마, 감성 건축 등 차별화 포인트를 반영한 프로젝트 고유의 브랜딩 및 정체성 전략을 도출",
+                    is_recommended=True,
+                    order=11,
+                    category="브랜딩전략"
+                ),
+                AnalysisStep(
+                    id="design_requirement_summary",
+                    title="최종 설계 요구사항 및 가이드라인",
+                    description="분석 결과를 바탕으로 실제 설계에 적용 가능한 요구사항과 가이드라인을 구조화",
+                    is_recommended=True,
+                    order=12,
+                    category="요구사항정리"
+                )
             ],
             PurposeType.OTHER_FACILITY: [
                 AnalysisStep(
