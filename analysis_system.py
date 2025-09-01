@@ -756,7 +756,7 @@ class AnalysisSystem:
         }
 
     def _load_optional_steps(self) -> List[AnalysisStep]:
-        """옵션 단계 로드"""
+        """선택적 분석 단계들"""
         return [
             AnalysisStep(
                 id="ux_circulation_simulation",
@@ -813,6 +813,30 @@ class AnalysisSystem:
                 is_optional=True,
                 order=21,
                 category="제안서설계"
+            ),
+            AnalysisStep(
+                id="site_environment_analysis",
+                title="대지 환경 분석",
+                description="지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
+                is_optional=True,
+                order=22,
+                category="대지분석"
+            ),
+            AnalysisStep(
+                id="structure_technology_analysis",
+                title="구조 기술 분석",
+                description="구조 시스템과 기술적 요구사항을 분석하여 최적의 구조 방안을 도출",
+                is_optional=True,
+                order=23,
+                category="구조분석"
+            ),
+            AnalysisStep(
+                id="proposal_framework",
+                title="제안서 프레임워크 설계",
+                description="분석 결과를 바탕으로 제안서 구조와 핵심 메시지를 설계",
+                is_optional=True,
+                order=24,
+                category="제안서설계"
             )
         ]
 
@@ -864,7 +888,7 @@ class AnalysisSystem:
         )
 
     def _load_recommended_cot_order(self) -> Dict[str, int]:
-        """권장 CoT 순서 매핑 (21개 블록으로 수정)"""
+        """권장 CoT 순서 매핑 (24개 블록으로 수정)"""
         return {
             "document_analyzer": 1,           # doc_collector → document_analyzer
             "requirement_analyzer": 2,        # requirements_extractor → requirement_analyzer
@@ -885,7 +909,9 @@ class AnalysisSystem:
             "cost_estimation": 17,            # 순서 조정
             "architectural_branding_identity": 18, # 순서 조정
             "action_planner": 19,             # 순서 조정
-            "proposal_framework": 20          # 순서 조정
+            "site_environment_analysis": 20,  # 새로 추가
+            "structure_technology_analysis": 21, # 새로 추가
+            "proposal_framework": 22          # 순서 조정
         }
 
     def sort_steps_by_recommended_order(self, steps: List[AnalysisStep]) -> List[AnalysisStep]:

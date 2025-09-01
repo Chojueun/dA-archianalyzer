@@ -3,7 +3,7 @@
 import streamlit as st
 import os
 import time
-from prompt_loader import load_prompt_blocks
+from dsl_to_prompt import load_prompt_blocks
 from user_state import (
     init_user_state, get_user_inputs, save_step_result, append_step_history, get_current_step_index,
     save_user_data, save_current_project, load_project, get_user_project_list
@@ -306,7 +306,7 @@ if not st.session_state.get('show_project_info', True):
     st.sidebar.markdown("### 추가 선택 가능한 단계")
     
     # 프롬프트 블록 로드
-    from prompt_loader import load_prompt_blocks
+    from dsl_to_prompt import load_prompt_blocks
     blocks = load_prompt_blocks()
     extra_blocks = blocks["extra"]
     

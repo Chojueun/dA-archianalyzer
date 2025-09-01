@@ -67,6 +67,41 @@
             "가치 우선순위 차트"
           ],
           "explanatory_template": "분석 방법 소개 → (AI 추론) 핵심 의도 인사이트 → 근거·출처 → 종합 결론·한계·다음 단계"
+        },
+        "templates": {
+          "tables": {
+            "document_structure": ["구조 요소", "위치/범위", "강조도", "설계 시사점", "근거·출처"],
+            "language_patterns": ["패턴 유형", "발생 빈도", "강조 표현", "의도 추론", "근거·출처"],
+            "explicit_vs_implicit": ["요구 유형", "명시적 요구", "암묵적 니즈", "추론 근거", "근거·출처"],
+            "stakeholder_values": ["가치 영역", "우선순위", "의사결정 기준", "조직 특성", "근거·출처"],
+            "differentiation_factors": ["차별화 요소", "경쟁사 대비", "강점/약점", "전략적 시사점", "근거·출처"]
+          },
+          "analysis_sections": {
+            "document_overview": {
+              "required_elements": ["문서 유형", "주요 섹션", "강조 포인트", "전체 톤"],
+              "narrative_template": "문서 개요 분석 → (AI 추론) 문서 특성 도출 → 근거·출처 명시 → 결론 · 문서의 성격"
+            },
+            "structural_analysis": {
+              "required_elements": ["구조적 특징", "흐름 패턴", "강조 요소", "설계 시사점"],
+              "narrative_template": "구조 분석 과정 → (AI 추론) 구조적 특징 도출 → 근거·출처 명시 → 결론 · 구조의 의미"
+            },
+            "language_pattern_analysis": {
+              "required_elements": ["패턴 유형", "반복 키워드", "강조 표현", "의도 추론"],
+              "narrative_template": "언어 패턴 분석 과정 → (AI 추론) 핵심 패턴 도출 → 근거·출처 명시 → 결론 · 패턴의 의미"
+            },
+            "requirement_classification": {
+              "required_elements": ["요구 유형", "명시적 내용", "암묵적 내용", "추론 근거"],
+              "narrative_template": "요구사항 분류 과정 → (AI 추론) 명시/암묵 구분 → 근거·출처 명시 → 결론 · 요구사항의 특성"
+            },
+            "stakeholder_insights": {
+              "required_elements": ["가치 영역", "우선순위", "의사결정 기준", "조직 특성"],
+              "narrative_template": "이해관계자 분석 과정 → (AI 추론) 가치/특성 도출 → 근거·출처 명시 → 결론 · 이해관계자 특성"
+            },
+            "differentiation_analysis": {
+              "required_elements": ["차별화 요소", "경쟁사 대비", "강점/약점", "전략적 시사점"],
+              "narrative_template": "차별화 분석 과정 → (AI 추론) 차별화 요소 도출 → 근거·출처 명시 → 결론 · 차별화 전략"
+            }
+          }
         }
       }
     },
@@ -94,7 +129,32 @@
             "분류의 일관성",
             "우선순위의 객관성",
             "전략·실행안의 구체성"
-          ]
+          ],
+          "scoring": {
+            "criteria": [
+              "중요도",
+              "실현가능성",
+              "시급성",
+              "영향도",
+              "복잡성"
+            ],
+            "scale": "1(낮음)–5(높음)",
+            "weights": {
+              "중요도": 0.30,
+              "실현가능성": 0.25,
+              "시급성": 0.20,
+              "영향도": 0.15,
+              "복잡성": 0.10
+            },
+            "priority_matrix": {
+              "high_high": "즉시 실행 (우선순위 1)",
+              "high_medium": "계획 수립 (우선순위 2)",
+              "medium_medium": "검토 후 결정 (우선순위 3)",
+              "low_medium": "모니터링 (우선순위 4)",
+              "low_low": "보류 (우선순위 5)"
+            },
+            "weights_overrides_allowed": true
+          }
         },
         "output_structure": [
           "요구사항 목록/분류",
@@ -135,6 +195,38 @@
             "실행 체크리스트"
           ],
           "explanatory_template": "방법 소개 → (AI 추론) 핵심 전략 인사이트 → 근거·출처 → 종합 결론·한계·다음 단계"
+        },
+        "templates": {
+          "tables": {
+            "requirement_list": ["요구사항 ID", "분류", "명시적 요구", "암묵적 니즈", "추론 근거", "근거·출처"],
+            "requirement_classification": ["분류 체계", "요구사항", "특징", "설계 시사점", "근거·출처"],
+            "priority_matrix": ["요구사항", "중요도", "실현가능성", "시급성", "영향도", "복잡성", "우선순위 점수", "우선순위 등급"],
+            "conflict_analysis": ["상충 요구사항", "상충 내용", "영향도", "해결 방안", "근거·출처"],
+            "strategy_direction": ["전략 영역", "방향성", "구체적 방안", "기대 효과", "근거·출처"],
+            "execution_plan": ["실행 항목", "담당자", "일정", "KPI", "체크포인트", "근거·출처"]
+          },
+          "analysis_sections": {
+            "requirement_extraction": {
+              "required_elements": ["요구사항 ID", "분류", "명시적 요구", "암묵적 니즈", "추론 근거"],
+              "narrative_template": "요구사항 추출 과정 → (AI 추론) 요구사항 분류 → 근거·출처 명시 → 결론 · 요구사항의 특성"
+            },
+            "priority_assessment": {
+              "required_elements": ["평가 기준", "점수", "가중치", "우선순위 점수", "우선순위 등급"],
+              "narrative_template": "우선순위 평가 과정 → (AI 추론) 평가 결과 분석 → 근거·출처 명시 → 결론 · 우선순위의 적절성"
+            },
+            "conflict_resolution": {
+              "required_elements": ["상충 요구사항", "상충 내용", "영향도", "해결 방안"],
+              "narrative_template": "상충관계 분석 과정 → (AI 추론) 해결 방안 도출 → 근거·출처 명시 → 결론 · 해결 방안의 실현 가능성"
+            },
+            "strategy_development": {
+              "required_elements": ["전략 영역", "방향성", "구체적 방안", "기대 효과"],
+              "narrative_template": "전략 개발 과정 → (AI 추론) 핵심 전략 도출 → 근거·출처 명시 → 결론 · 전략의 효과"
+            },
+            "execution_planning": {
+              "required_elements": ["실행 항목", "담당자", "일정", "KPI", "체크포인트"],
+              "narrative_template": "실행 계획 수립 과정 → (AI 추론) 구체적 계획 도출 → 근거·출처 명시 → 결론 · 실행 계획의 실현 가능성"
+            }
+          }
         }
       }
     },
@@ -176,7 +268,7 @@
             "목표는 정량 지표와 기준일 포함",
             "표 하단 4–8문장 해설",
             "전체 최소 1000자",
-            "'(AI 추론)'에는 근거·출처 병기"
+            "'AI 추론)'에는 근거·출처 병기"
           ],
           "required_phrases": [
             "(AI 추론)",
@@ -228,7 +320,46 @@
             "평가의 객관성",
             "대응 전략의 실현 가능성",
             "모니터링 설계의 적절성"
-          ]
+          ],
+          "scoring": {
+            "criteria": [
+              "발생 확률",
+              "영향도",
+              "탐지 가능성",
+              "대응 가능성",
+              "시급성"
+            ],
+            "scale": "1(매우 낮음)–5(매우 높음)",
+            "risk_matrix": {
+              "high_high": "극고위험 (즉시 대응 필요)",
+              "high_medium": "고위험 (우선 대응)",
+              "medium_medium": "중위험 (계획적 대응)",
+              "low_medium": "저위험 (모니터링)",
+              "low_low": "극저위험 (수용)"
+            },
+            "probability_scale": {
+              "1": "매우 낮음 (1-10%)",
+              "2": "낮음 (11-30%)",
+              "3": "보통 (31-50%)",
+              "4": "높음 (51-70%)",
+              "5": "매우 높음 (71-100%)"
+            },
+            "impact_scale": {
+              "1": "매우 낮음 (프로젝트 지연 <1개월)",
+              "2": "낮음 (프로젝트 지연 1-3개월)",
+              "3": "보통 (프로젝트 지연 3-6개월)",
+              "4": "높음 (프로젝트 지연 6-12개월)",
+              "5": "매우 높음 (프로젝트 중단 위험)"
+            },
+            "weights": {
+              "발생확률": 0.35,
+              "영향도": 0.35,
+              "탐지가능성": 0.15,
+              "대응가능성": 0.10,
+              "시급성": 0.05
+            },
+            "weights_overrides_allowed": true
+          }
         },
         "output_structure": [
           "리스크 식별",
@@ -268,16 +399,207 @@
             "모니터링 플로우차트"
           ],
           "explanatory_template": "방법 소개 → (AI 추론) 핵심 리스크 인사이트 → 근거·출처 → 종합 결론·한계·다음 단계"
+        },
+        "templates": {
+          "tables": {
+            "risk_identification": ["리스크 ID", "리스크 유형", "리스크 설명", "발생 원인", "잠재적 영향", "근거·출처"],
+            "risk_assessment": ["리스크", "발생 확률", "영향도", "탐지 가능성", "대응 가능성", "시급성", "리스크 점수", "위험 등급"],
+            "risk_matrix": ["위험 등급", "확률 범위", "영향도 범위", "대응 전략", "모니터링 주기", "근거·출처"],
+            "response_strategy": ["리스크", "대응 전략", "구체적 방안", "담당자", "일정", "예산", "근거·출처"],
+            "contingency_plan": ["리스크", "예비 계획", "트리거 조건", "실행 단계", "필요 자원", "근거·출처"],
+            "monitoring_plan": ["모니터링 항목", "지표", "임계치", "주기", "담당자", "에스컬레이션", "근거·출처"]
+          },
+          "analysis_sections": {
+            "risk_identification": {
+              "required_elements": ["리스크 유형", "리스크 설명", "발생 원인", "잠재적 영향"],
+              "narrative_template": "리스크 식별 과정 → (AI 추론) 리스크 요소 도출 → 근거·출처 명시 → 결론 · 리스크의 특성"
+            },
+            "risk_assessment": {
+              "required_elements": ["평가 기준", "점수", "위험 등급", "우선순위"],
+              "narrative_template": "리스크 평가 과정 → (AI 추론) 평가 결과 분석 → 근거·출처 명시 → 결론 · 리스크의 심각성"
+            },
+            "response_planning": {
+              "required_elements": ["대응 전략", "구체적 방안", "담당자", "일정", "예산"],
+              "narrative_template": "대응 전략 수립 과정 → (AI 추론) 대응 방안 도출 → 근거·출처 명시 → 결론 · 대응 전략의 실현 가능성"
+            },
+            "contingency_planning": {
+              "required_elements": ["예비 계획", "트리거 조건", "실행 단계", "필요 자원"],
+              "narrative_template": "예비 계획 수립 과정 → (AI 추론) 예비 계획 도출 → 근거·출처 명시 → 결론 · 예비 계획의 적절성"
+            },
+            "monitoring_design": {
+              "required_elements": ["모니터링 지표", "임계치", "주기", "에스컬레이션"],
+              "narrative_template": "모니터링 설계 과정 → (AI 추론) 모니터링 체계 도출 → 근거·출처 명시 → 결론 · 모니터링의 효과성"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "site_environment_analysis",
+      "title": "대지 환경 분석",
+      "description": "지형·향·식생·지반·접근성·인프라 등 물리적 조건을 종합 분석하여 설계 기초 자료와 배치 전략을 도출",
+      "content_dsl": {
+        "goal": "대지의 물리적 환경을 다각도로 분석하여 설계 시 고려사항·제약요소·잠재기회를 구조화하고, 배치 전략(대안)을 도출",
+        "role": "대지 환경 분석 전문가",
+        "context": "지형(고저차/경사/표고), 향(일조/일사), 기후(풍·강우·온습도), 식생, 지반(암반/토질/지지력), 주변 현황(인접 건물/조망/프라이버시), 인프라(전력/상하수/통신), 교통·접근성(보행/차량/서비스)을 통합 검토",
+        "source": [
+          "user_inputs",
+          "pdf_summary",
+          "site_fields",
+          "topography_data",
+          "climate_database",
+          "geotech_reports"
+        ],
+        "tasks": [
+          "지형 분석: 표고 분포, 최대·평균 경사, 단차, 배수 흐름 파악",
+          "향·일사·통풍 분석: 면별 일사부하 및 지배풍 장·단점",
+          "주변 현황·경관: 조망축/차폐 요소/프라이버시 이슈 정리",
+          "지반·토질: 암반 여부, 굴착 난이도, 기초 공법 시사점",
+          "식생·자연환경: 기존 식생·보전/이식 대상, 미기후 요소",
+          "인프라·접근성: 기반시설 용량/증설 필요, 보행·차량 동선",
+          "설계 시 고려사항 및 리스크·기회 도출",
+          "배치 전략 대안(3안) 제시 및 비교"
+        ],
+        "analysis_framework": {
+          "approach": "정량-정성 혼합 분석 + 시나리오 기반 의사결정",
+          "methodology": "데이터 수집 → 항목별 점수화 → 시사점 도출 → 3안 제시 → 다기준 의사결정(MCDM)",
+          "criteria": [
+            "데이터 근거의 명확성(좌표/수치/출처)",
+            "설계 시사점의 실무 적용성",
+            "대안 간 비교의 일관성",
+            "추정(AI 추론) 구간의 투명성"
+          ],
+          "scoring": {
+            "criteria": [
+              "토목·굴착 난이도/비용",
+              "일사·에너지 효율",
+              "동선 효율",
+              "조망·프라이버시",
+              "확장성/유연성",
+              "브랜딩·공간경험"
+            ],
+            "scale": "1–5",
+            "weights": {
+              "토목·굴착": 0.20,
+              "에너지효율": 0.15,
+              "동선효율": 0.20,
+              "조망·프라이버시": 0.15,
+              "확장성": 0.15,
+              "브랜딩": 0.15
+            },
+            "weights_overrides_allowed": true
+          }
+        },
+        "output_structure": [
+          "대지 분석 종합표 (분석 항목 / 현황 분석 / 설계 시 고려사항)",
+          "대지 SWOT 분석 (강점·약점·기회·위협)",
+          "개략적 배치 구상 (Zoning Diagram 3안: 단일 연결형 / 다단 분리형 / 수직 통합형)",
+          "대안 비교 표 (평가 항목·점수·가중치 합계·주석)",
+          "AI 종합 제언 (최적 대안 및 단계별 권고사항)"
+        ],
+        "quality_standards": {
+          "constraints": [
+            "모든 '(AI 추론)'에는 근거·출처 또는 추정 방식 설명 병기",
+            "각 표 하단에 4–8문장(300–600자) 해설 필수",
+            "전체 결과 최소 1000자 이상",
+            "지도/도식 수치·범례·단위·좌표계 명시",
+            "불확실 데이터는 '추가 확인 필요' 태그 부착"
+          ],
+          "required_phrases": [
+            "(AI 추론)",
+            "설계 시 고려사항",
+            "종합 결론",
+            "한계와 다음 단계",
+            "근거·출처"
+          ],
+          "validation_rules": [
+            "경사·단차·일조 등 핵심 수치는 수치/범위로 명시",
+            "배치 3안은 각 장단점과 적용 조건을 명확히 구분",
+            "최종 권고안은 선택 근거(가중치 합계/핵심 리스크) 제시",
+            "추가 조사 항목 체크리스트 포함"
+          ]
+        },
+        "presentation": {
+          "language_tone": "객관적, 실무적, 설계 중심",
+          "target_format": "표 우선 → 즉시 하단에 '해설' 4–8문장",
+          "visual_elements": [
+            "지형 단면도/경사 히스토그램",
+            "일사·바람 장단점 도식",
+            "Zoning Diagram 3안",
+            "동선(보행/차량/서비스) 개념도"
+          ],
+          "options": {
+            "include_diagrams": true,
+            "table_then_narrative": true,
+            "show_score_breakdown": true
+          },
+          "explanatory_template": "방법 소개 → (AI 추론) 인사이트 → 근거·출처 → 종합 결론·한계·다음 단계"
+        },
+        "data_contract": {
+          "expected_site_fields": [
+            "elevation_min","elevation_max","elevation_avg",
+            "slope_avg","slope_max",
+            "height_diff",
+            "aspect_distribution",
+            "prevailing_wind_dir",
+            "annual_solar_irradiance",
+            "rock_soil_type",
+            "bearing_capacity_est",
+            "existing_vegetation",
+            "utility_nearby_capacity_est",
+            "road_access_types","road_access_width",
+            "adjacent_buildings_heights","adjacent_buildings_distances"
+          ],
+          "missing_policy": "누락 시 (AI 추론) 가정값 제시 + '추가 확인 필요' 태그",
+          "locale_overrides": {
+            "KR": { "units": { "length": "m", "irradiance": "kWh/m²·yr" } },
+            "US": { "units": { "length": "ft", "irradiance": "BTU/ft²·yr" } },
+            "IN": { "units": { "length": "m", "irradiance": "kWh/m²·yr" } },
+            "EU": { "units": { "length": "m", "irradiance": "kWh/m²·yr" } }
+          }
+        },
+        "templates": {
+          "tables": {
+            "summary": ["분석 항목", "현황 분석", "설계 시 고려사항", "근거·출처"],
+            "swot": ["구분", "내용", "설계 시사점", "근거·출처"],
+            "alternatives": ["대안", "핵심 개념", "장점", "단점", "적용 조건", "평가 점수"]
+          },
+          "alternatives": [
+            {
+              "name": "단일 연결형 (Podium & Bridge)",
+              "idea": "저레벨 기단부 + 상부 연결 브릿지로 기존 부지와 평레벨 통합",
+              "pros": ["명확한 동선", "광장/옥상공원 확보", "집약적 코어"],
+              "cons": ["초기 토목비용↑", "기단 디자인 완성도 요구"],
+              "conditions": ["height_diff>=8", "program_pattern=focused"],
+              "tags": ["연계성", "상징성", "외부공간"]
+            },
+            {
+              "name": "다단 분리형 (Terraced Buildings)",
+              "idea": "지형을 따라 계단식 동 배치, 레벨별 연결",
+              "pros": ["토목 최소화", "자연지형 조화", "레벨별 외부공간"],
+              "cons": ["동선 복잡성", "관리 분산"],
+              "conditions": ["slope_avg>=7", "program_pattern=distributed"],
+              "tags": ["지형친화", "점진적 확장"]
+            },
+            {
+              "name": "수직 통합형 (Vertical Core)",
+              "idea": "양 레벨을 관통하는 수직 코어 중심",
+              "pros": ["동선 효율 극대화", "상징 공간"],
+              "cons": ["시공 난이도↑", "코어 주변 제약"],
+              "conditions": ["symbolic_space=true", "vertical_circulation_priority=true"],
+              "tags": ["상징성", "집약동선"]
+            }
+          ]
         }
       }
     },
     {
       "id": "site_regulation_analysis",
-      "title": "대지 환경 및 법규 분석",
+      "title": "대지 법규 분석",
       "description": "대지의 물리적 환경과 관련 법규를 종합 분석하여 설계 제약요소 파악",
       "content_dsl": {
         "goal": "적용 법규를 공식 문헌 수준에서 검토하고, 확정/추정/추가 확인 사항을 명확히 제시",
-        "role": "대지 환경 및 법규 분석 전문가",
+        "role": "대지 법규 분석 전문가",
         "context": "입력 자료 + 건축 관련 법규/코드 데이터베이스를 교차 검토하여, 법령 조항 기반 분석과 (AI 추론) 조건부 분석을 구분",
         "source": ["user_inputs", "pdf_summary", "site_fields", "legal_database", "building_codes"],
         "tasks": [
@@ -338,6 +660,116 @@
             "제약요소 매트릭스"
           ],
           "explanatory_template": "법규 및 규정 정리(법령 레벨) → 관련 규정 분석(프로젝트 매칭) → 확정/추정/추가정보 3단 구분 → 종합 결론(한계·다음 단계)"
+        },
+        "data_contract": {
+          "expected_regulation_fields": [
+            "project_location",
+            "land_use_zone",
+            "building_type",
+            "building_height",
+            "floor_area_ratio",
+            "building_coverage_ratio",
+            "setback_requirements",
+            "parking_requirements",
+            "fire_safety_requirements",
+            "accessibility_requirements",
+            "environmental_regulations",
+            "heritage_protection",
+            "noise_regulations",
+            "air_quality_standards"
+          ],
+          "missing_policy": "누락 시 (AI 추론) 표준 규정 제시 + '추가 확인 필요' 태그",
+          "locale_overrides": {
+            "KR": {
+              "regulations": {
+                "building_act": "건축법",
+                "building_code": "건축기준법",
+                "zoning_regulations": "도시계획법",
+                "fire_safety": "소방시설법",
+                "accessibility": "장애인편의증진법"
+              },
+              "standard_values": {
+                "max_height": "지역별 상한",
+                "far_limit": "용도별 상한",
+                "bcr_limit": "용도별 상한",
+                "setback": "도로폭별 기준"
+              }
+            },
+            "US": {
+              "regulations": {
+                "building_code": "IBC",
+                "zoning_regulations": "Local Zoning Code",
+                "fire_safety": "NFPA",
+                "accessibility": "ADA"
+              },
+              "standard_values": {
+                "max_height": "Zone-based",
+                "far_limit": "Zone-based",
+                "bcr_limit": "Zone-based",
+                "setback": "Street width based"
+              }
+            },
+            "IN": {
+              "regulations": {
+                "building_code": "NBC",
+                "zoning_regulations": "Local Development Plan",
+                "fire_safety": "NBC Fire Safety",
+                "accessibility": "Harmonized Guidelines"
+              },
+              "standard_values": {
+                "max_height": "Zone-based",
+                "far_limit": "Zone-based",
+                "bcr_limit": "Zone-based",
+                "setback": "Road width based"
+              }
+            },
+            "EU": {
+              "regulations": {
+                "building_code": "Eurocodes",
+                "zoning_regulations": "Local Planning",
+                "fire_safety": "EN Standards",
+                "accessibility": "EN Standards"
+              },
+              "standard_values": {
+                "max_height": "Local planning",
+                "far_limit": "Local planning",
+                "bcr_limit": "Local planning",
+                "setback": "Local planning"
+              }
+            }
+          }
+        },
+        "templates": {
+          "tables": {
+            "regulation_summary": ["법규명", "조항 번호", "주요 내용", "적용 범위", "근거·출처"],
+            "regulation_analysis": ["법규명", "적용 여부", "적용 범위", "제약 내용", "근거·출처"],
+            "constraint_analysis": ["제약 요소", "법규 근거", "제약 내용", "대응 방안", "근거·출처"],
+            "compliance_checklist": ["체크 항목", "준수 여부", "기준값", "현재 상태", "근거·출처"],
+            "additional_requirements": ["추가 요구사항", "관련 법규", "내용", "확인 필요", "근거·출처"],
+            "regulation_hierarchy": ["법규 계층", "법규명", "우선순위", "적용 범위", "근거·출처"]
+          },
+          "analysis_sections": {
+            "regulation_identification": {
+              "required_elements": ["법규명", "조항 번호", "주요 내용", "적용 범위"],
+              "narrative_template": "법규 식별 과정 → (AI 추론) 적용 법규 도출 → 근거·출처 명시 → 결론 · 법규의 적용성"
+            },
+            "regulation_analysis": {
+              "required_elements": ["적용 여부", "적용 범위", "제약 내용", "대응 방안"],
+              "narrative_template": "법규 분석 과정 → (AI 추론) 제약 요소 도출 → 근거·출처 명시 → 결론 · 제약의 영향도"
+            },
+            "compliance_assessment": {
+              "required_elements": ["준수 여부", "기준값", "현재 상태", "개선 방안"],
+              "narrative_template": "준수성 평가 과정 → (AI 추론) 준수 상태 분석 → 근거·출처 명시 → 결론 · 준수성 확보 방안"
+            },
+            "constraint_analysis": {
+              "required_elements": ["제약 요소", "법규 근거", "제약 내용", "대응 방안"],
+              "narrative_template": "제약 요소 분석 과정 → (AI 추론) 제약 영향 분석 → 근거·출처 명시 → 결론 · 제약 대응 전략"
+            },
+            "additional_requirements": {
+              "required_elements": ["추가 요구사항", "관련 법규", "확인 필요", "대응 방안"],
+              "narrative_template": "추가 요구사항 분석 과정 → (AI 추론) 추가 요구사항 도출 → 근거·출처 명시 → 결론 · 추가 확인 계획"
+            }
+          }
         }
       }
     },
@@ -365,7 +797,46 @@
             "준수 여부 확인의 정확성",
             "위반 리스크 분석의 정확성",
             "준수 방안의 실현 가능성"
-          ]
+          ],
+          "scoring": {
+            "criteria": [
+              "위반 가능성",
+              "위반 심각도",
+              "탐지 가능성",
+              "대응 가능성",
+              "시급성"
+            ],
+            "scale": "1(매우 낮음)–5(매우 높음)",
+            "risk_matrix": {
+              "high_high": "극고위험 (즉시 대응 필요)",
+              "high_medium": "고위험 (우선 대응)",
+              "medium_medium": "중위험 (계획적 대응)",
+              "low_medium": "저위험 (모니터링)",
+              "low_low": "극저위험 (수용)"
+            },
+            "probability_scale": {
+              "1": "매우 낮음 (1-10%)",
+              "2": "낮음 (11-30%)",
+              "3": "보통 (31-50%)",
+              "4": "높음 (51-70%)",
+              "5": "매우 높음 (71-100%)"
+            },
+            "impact_scale": {
+              "1": "매우 낮음 (프로젝트 지연 <1개월)",
+              "2": "낮음 (프로젝트 지연 1-3개월)",
+              "3": "보통 (프로젝트 지연 3-6개월)",
+              "4": "높음 (프로젝트 지연 6-12개월)",
+              "5": "매우 높음 (프로젝트 중단 위험)"
+            },
+            "weights": {
+              "위반가능성": 0.30,
+              "위반심각도": 0.30,
+              "탐지가능성": 0.20,
+              "대응가능성": 0.15,
+              "시급성": 0.05
+            },
+            "weights_overrides_allowed": true
+          }
         },
         "output_structure": [
           "적용 법규 및 규정",
@@ -406,59 +877,38 @@
             "위반 리스크 매트릭스",
             "준수 방안 다이어그램"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 준수 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "적용 법규 및 규정": {
-              "table_title": "적용 법규 및 규정 정리표",
-              "required_columns": [
-                "법규명",
-                "적용 조항",
-                "주요 내용",
-                "근거·출처"
-              ],
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 준수 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "regulation_summary": ["법규명", "적용 조항", "주요 내용", "적용 범위", "근거·출처"],
+            "compliance_checklist": ["체크 항목", "준수 여부", "기준값", "현재 상태", "개선점", "근거·출처"],
+            "violation_risk_analysis": ["위반 항목", "위반 가능성", "위반 심각도", "탐지 가능성", "대응 가능성", "위험 등급", "근거·출처"],
+            "compliance_strategy": ["준수 방안", "구체적 조치", "담당자", "일정", "예산", "근거·출처"],
+            "improvement_plan": ["개선 항목", "현재 상태", "개선 방안", "기대 효과", "실행 계획", "근거·출처"],
+            "legality_ensurance": ["적법성 확보 전략", "핵심 방안", "실행 단계", "검증 방법", "근거·출처"],
+            "compliance_monitoring": ["모니터링 항목", "검토 주기", "담당자", "보고 체계", "근거·출처"]
+          },
+          "analysis_sections": {
+            "regulation_analysis": {
+              "required_elements": ["법규명", "적용 조항", "주요 내용", "적용 범위"],
               "narrative_template": "법규 정리 과정 → (AI 추론) 적용 법규 도출 → 근거·출처 명시 → 결론 · 법적 요구사항"
             },
-            "준수 여부 체크리스트": {
-              "table_title": "준수 여부 체크리스트",
-              "required_columns": [
-                "체크 항목",
-                "준수 여부",
-                "근거",
-                "비고"
-              ],
+            "compliance_assessment": {
+              "required_elements": ["체크 항목", "준수 여부", "기준값", "현재 상태", "개선점"],
               "narrative_template": "준수 여부 확인 과정 → (AI 추론) 준수 상태 평가 → 근거·출처 명시 → 결론 · 준수 현황"
             },
-            "위반 가능성 및 리스크": {
-              "table_title": "위반 가능성 및 리스크 분석표",
-              "required_columns": [
-                "위반 항목",
-                "위반 가능성",
-                "영향도",
-                "대응 방안",
-                "근거·출처"
-              ],
-              "narrative_template": "위반 리스크 분석 과정 → (AI 추론) 위반 가능성 평가 → 근거·출처 명시 → 결론 · 리스크 관리 방안"
+            "violation_risk_evaluation": {
+              "required_elements": ["위반 항목", "위반 가능성", "위반 심각도", "탐지 가능성", "대응 가능성", "위험 등급"],
+              "narrative_template": "위반 리스크 분석 과정 → (AI 추론) 위험 등급 평가 → 근거·출처 명시 → 결론 · 위반 리스크의 심각성"
             },
-            "준수 방안 및 개선안": {
-              "table_title": "준수 방안 및 개선안",
-              "required_columns": [
-                "개선 항목",
-                "구체적 방안",
-                "담당자",
-                "기한",
-                "근거·출처"
-              ],
-              "narrative_template": "준수 방안 도출 과정 → (AI 추론) 개선안 우선순위 설정 → 근거·출처 명시 → 결론 · 실행 계획"
+            "compliance_strategy_development": {
+              "required_elements": ["준수 방안", "구체적 조치", "담당자", "일정", "예산"],
+              "narrative_template": "준수 방안 도출 과정 → (AI 추론) 구체적 조치 설정 → 근거·출처 명시 → 결론 · 준수 방안의 실현 가능성"
             },
-            "적법성 확보 전략": {
-              "table_title": "적법성 확보 전략",
-              "required_columns": [
-                "전략 영역",
-                "핵심 방안",
-                "실행 계획",
-                "근거·출처"
-              ],
-              "narrative_template": "적법성 확보 전략 수립 과정 → (AI 추론) 핵심 전략 도출 → 근거·출처 명시 → 결론 · 전략 실행 방안"
+            "improvement_planning": {
+              "required_elements": ["개선 항목", "현재 상태", "개선 방안", "기대 효과", "실행 계획"],
+              "narrative_template": "개선 계획 수립 과정 → (AI 추론) 개선 방안 도출 → 근거·출처 명시 → 결론 · 개선 계획의 효과성"
             }
           }
         }
@@ -527,62 +977,32 @@
           "visual_elements": [
             "사례 비교 매트릭스",
             "성공 요인 다이어그램",
-            "차별화 포인트 차트"
+            "차별화 포인트 차트",
+            "사례별 공간 구성 다이어그램",
+            "벤치마킹 포인트 시각화"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 벤치마킹 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "유사 사례 조사": {
-              "table_title": "유사 사례 조사표",
-              "required_columns": [
-                "사례명",
-                "위치",
-                "규모",
-                "완공년도",
-                "근거·출처"
-              ],
-              "narrative_template": "사례 선정 기준 → (AI 추론) 유사성 평가 → 근거·출처 명시 → 결론 · 사례의 대표성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 벤치마킹 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "case_survey": ["사례명", "위치", "규모", "완공년도", "프로젝트 유형", "근거·출처"],
+            "case_features": ["사례명", "핵심 특징", "설계 컨셉", "주요 성과", "특징적 요소", "근거·출처"],
+            "success_factors": ["사례명", "성공 요인", "실패 요인", "핵심 교훈", "적용 가능성", "근거·출처"],
+            "benchmarking_points": ["벤치마킹 항목", "사례별 현황", "우리 프로젝트", "차별화 방향", "근거·출처"],
+            "differentiation_strategy": ["차별화 영역", "현재 사례", "우리 방향", "실현 방안", "근거·출처"]
+          },
+          "analysis_sections": {
+            "case_analysis": {
+              "required_elements": ["사례명", "핵심 특징", "설계 컨셉", "주요 성과"],
+              "narrative_template": "사례 분석 방법론 → (AI 추론) 핵심 특징 도출 → 근거·출처 명시 → 결론 · 사례의 의미"
             },
-            "사례별 핵심 특징": {
-              "table_title": "사례별 핵심 특징 분석표",
-              "required_columns": [
-                "사례명",
-                "핵심 특징",
-                "설계 컨셉",
-                "주요 성과",
-                "근거·출처"
-              ],
-              "narrative_template": "특징 분석 방법론 → (AI 추론) 핵심 특징 도출 → 근거·출처 명시 → 결론 · 특징의 의미"
+            "success_factor_analysis": {
+              "required_elements": ["성공 요인", "실패 요인", "핵심 교훈", "적용 가능성"],
+              "narrative_template": "성공 요인 분석 과정 → (AI 추론) 핵심 교훈 도출 → 근거·출처 명시 → 결론 · 적용 가능성"
             },
-            "성공/실패 요인 분석": {
-              "table_title": "성공/실패 요인 분석표",
-              "required_columns": [
-                "사례명",
-                "성공/실패 요인",
-                "영향도",
-                "근거·출처"
-              ],
-              "narrative_template": "요인 분석 과정 → (AI 추론) 성공/실패 요인 도출 → 근거·출처 명시 → 결론 · 요인의 시사점"
-            },
-            "벤치마킹 포인트": {
-              "table_title": "벤치마킹 포인트 분석표",
-              "required_columns": [
-                "벤치마킹 항목",
-                "참고 사례",
-                "적용 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
-              "narrative_template": "벤치마킹 포인트 도출 과정 → (AI 추론) 적용 방안 설정 → 근거·출처 명시 → 결론 · 적용 가능성"
-            },
-            "차별화 방향": {
-              "table_title": "차별화 방향 설정표",
-              "required_columns": [
-                "차별화 영역",
-                "방향성",
-                "구체적 방안",
-                "근거·출처"
-              ],
-              "narrative_template": "차별화 방향 설정 과정 → (AI 추론) 차별화 요소 도출 → 근거·출처 명시 → 결론 · 차별화 전략"
+            "benchmarking_strategy": {
+              "required_elements": ["벤치마킹 항목", "사례별 현황", "우리 프로젝트", "차별화 방향"],
+              "narrative_template": "벤치마킹 전략 수립 → (AI 추론) 차별화 방향 설정 → 근거·출처 명시 → 결론 · 벤치마킹 효과"
             }
           }
         }
@@ -607,6 +1027,27 @@
         "analysis_framework": {
           "approach": "체계적 경쟁사 분석",
           "methodology": "경쟁사 식별 + 특징 분석 + 경쟁력 비교 + 차별화 전략 수립",
+          "scoring": {
+            "criteria": [
+              "브랜드 인지도",
+              "기술력/품질",
+              "가격 경쟁력",
+              "서비스 품질",
+              "시장 점유율",
+              "혁신성"
+            ],
+            "scale": "1(매우 약함)–5(매우 강함), 가중치 합산",
+            "weights": {
+              "브랜드인지도": 0.20,
+              "기술력품질": 0.25,
+              "가격경쟁력": 0.20,
+              "서비스품질": 0.15,
+              "시장점유율": 0.10,
+              "혁신성": 0.10
+            },
+            "weights_overrides_allowed": true,
+            "weights_override": {}
+          },
           "criteria": [
             "경쟁사 선정의 적절성",
             "분석의 객관성",
@@ -653,62 +1094,28 @@
             "경쟁력 분석 차트",
             "차별화 전략 다이어그램"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 경쟁 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "경쟁 프로젝트 식별": {
-              "table_title": "경쟁 프로젝트 식별표",
-              "required_columns": [
-                "프로젝트명",
-                "위치",
-                "규모",
-                "진행 단계",
-                "근거·출처"
-              ],
-              "narrative_template": "경쟁사 선정 기준 → (AI 추론) 경쟁 관계 평가 → 근거·출처 명시 → 결론 · 경쟁 구도"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 경쟁 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "competitor_identification": ["프로젝트명", "위치", "규모", "진행 단계", "경쟁 강도", "근거·출처"],
+            "competitor_features": ["경쟁사", "핵심 특징", "강점", "약점", "차별화 요소", "근거·출처"],
+            "competitiveness_comparison": ["비교 항목", "본 프로젝트", "경쟁사", "우위/열위", "점수", "근거·출처"],
+            "differentiation_opportunities": ["기회 요인", "내용", "차별화 잠재력", "실현 가능성", "우선순위", "근거·출처"],
+            "competitive_advantage_strategy": ["전략 영역", "핵심 전략", "구체적 방안", "기대 효과", "실행 일정", "근거·출처"]
+          },
+          "analysis_sections": {
+            "competitor_analysis": {
+              "required_elements": ["경쟁사", "핵심 특징", "강점", "약점"],
+              "narrative_template": "경쟁사 분석 방법론 → (AI 추론) 강점/약점 도출 → 근거·출처 명시 → 결론 · 경쟁 구도"
             },
-            "경쟁사별 핵심 특징": {
-              "table_title": "경쟁사별 핵심 특징 분석표",
-              "required_columns": [
-                "경쟁사",
-                "핵심 특징",
-                "강점",
-                "약점",
-                "근거·출처"
-              ],
-              "narrative_template": "특징 분석 방법론 → (AI 추론) 강점/약점 도출 → 근거·출처 명시 → 결론 · 특징의 의미"
+            "competitiveness_evaluation": {
+              "required_elements": ["비교 항목", "우위/열위", "점수"],
+              "narrative_template": "경쟁력 평가 과정 → (AI 추론) 우위/열위 분석 → 근거·출처 명시 → 결론 · 경쟁력 현황"
             },
-            "경쟁력 비교 분석": {
-              "table_title": "경쟁력 비교 분석표",
-              "required_columns": [
-                "비교 항목",
-                "본 프로젝트",
-                "경쟁사",
-                "우위/열위",
-                "근거·출처"
-              ],
-              "narrative_template": "경쟁력 비교 과정 → (AI 추론) 우위/열위 평가 → 근거·출처 명시 → 결론 · 경쟁력 현황"
-            },
-            "차별화 기회 요인": {
-              "table_title": "차별화 기회 요인 분석표",
-              "required_columns": [
-                "기회 요인",
-                "내용",
-                "차별화 잠재력",
-                "실현 가능성",
-                "근거·출처"
-              ],
-              "narrative_template": "기회 요인 도출 과정 → (AI 추론) 차별화 잠재력 평가 → 근거·출처 명시 → 결론 · 기회 요인의 가치"
-            },
-            "경쟁 우위 확보 전략": {
-              "table_title": "경쟁 우위 확보 전략표",
-              "required_columns": [
-                "전략 영역",
-                "핵심 전략",
-                "구체적 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
-              "narrative_template": "전략 수립 과정 → (AI 추론) 핵심 전략 도출 → 근거·출처 명시 → 결론 · 전략 실행 방안"
+            "differentiation_strategy": {
+              "required_elements": ["기회 요인", "차별화 잠재력", "실현 가능성"],
+              "narrative_template": "차별화 전략 수립 → (AI 추론) 기회 요인 평가 → 근거·출처 명시 → 결론 · 차별화 방향"
             }
           }
         }
@@ -777,62 +1184,32 @@
           "visual_elements": [
             "트렌드 분석 차트",
             "기술 적용 다이어그램",
-            "혁신 전략 맵"
+            "혁신 전략 맵",
+            "트렌드 타임라인",
+            "기술 매트릭스 다이어그램"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 트렌드 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "최신 설계 트렌드": {
-              "table_title": "최신 설계 트렌드 분석표",
-              "required_columns": [
-                "트렌드",
-                "주요 특징",
-                "적용 분야",
-                "근거·출처"
-              ],
-              "narrative_template": "트렌드 조사 방법론 → (AI 추론) 핵심 트렌드 도출 → 근거·출처 명시 → 결론 · 트렌드의 의미"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 트렌드 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "design_trends": ["트렌드명", "주요 특징", "적용 분야", "발전 단계", "근거·출처"],
+            "innovation_technologies": ["기술/솔루션명", "주요 특징", "적용 사례", "성숙도", "근거·출처"],
+            "applicability_assessment": ["트렌드/기술", "적용 가능성", "장점", "단점", "우선순위", "근거·출처"],
+            "trend_application": ["적용 영역", "구체적 방안", "기대 효과", "실행 계획", "투자 비용", "근거·출처"],
+            "innovation_strategy": ["전략 영역", "핵심 전략", "구체적 방안", "기대 효과", "실행 일정", "근거·출처"]
+          },
+          "analysis_sections": {
+            "trend_analysis": {
+              "required_elements": ["트렌드명", "주요 특징", "적용 분야"],
+              "narrative_template": "트렌드 분석 방법론 → (AI 추론) 핵심 트렌드 도출 → 근거·출처 명시 → 결론 · 트렌드의 의미"
             },
-            "혁신 기술 및 솔루션": {
-              "table_title": "혁신 기술 및 솔루션 분석표",
-              "required_columns": [
-                "기술/솔루션",
-                "주요 특징",
-                "적용 사례",
-                "근거·출처"
-              ],
-              "narrative_template": "기술 분석 과정 → (AI 추론) 혁신 기술 도출 → 근거·출처 명시 → 결론 · 기술의 가치"
+            "technology_evaluation": {
+              "required_elements": ["기술/솔루션", "주요 특징", "적용 사례"],
+              "narrative_template": "기술 분석 과정 → (AI 추론) 혁신 기술 평가 → 근거·출처 명시 → 결론 · 기술의 가치"
             },
-            "적용 가능성 평가": {
-              "table_title": "적용 가능성 평가표",
-              "required_columns": [
-                "트렌드/기술",
-                "적용 가능성",
-                "장점",
-                "단점",
-                "근거·출처"
-              ],
-              "narrative_template": "적용 가능성 평가 과정 → (AI 추론) 장단점 분석 → 근거·출처 명시 → 결론 · 적용 가능성"
-            },
-            "트렌드 적용 방안": {
-              "table_title": "트렌드 적용 방안표",
-              "required_columns": [
-                "적용 영역",
-                "구체적 방안",
-                "기대 효과",
-                "실행 계획",
-                "근거·출처"
-              ],
-              "narrative_template": "적용 방안 도출 과정 → (AI 추론) 구체적 방안 설정 → 근거·출처 명시 → 결론 · 적용 효과"
-            },
-            "혁신성 확보 전략": {
-              "table_title": "혁신성 확보 전략표",
-              "required_columns": [
-                "전략 영역",
-                "핵심 전략",
-                "구체적 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
-              "narrative_template": "혁신성 확보 전략 수립 과정 → (AI 추론) 핵심 전략 도출 → 근거·출처 명시 → 결론 · 전략 실행 방안"
+            "application_planning": {
+              "required_elements": ["적용 영역", "구체적 방안", "기대 효과"],
+              "narrative_template": "적용 방안 도출 → (AI 추론) 구체적 방안 설정 → 근거·출처 명시 → 결론 · 적용 효과"
             }
           }
         }
@@ -901,60 +1278,32 @@
           "visual_elements": [
             "매스 전략 다이어그램",
             "배치 방향성 차트",
-            "공간 구성 도식"
+            "공간 구성 도식",
+            "매스별 기능 배치도",
+            "동선 및 접근성 다이어그램"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 매스 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "매스 전략 옵션": {
-              "table_title": "매스 전략 옵션 분석표",
-              "required_columns": [
-                "전략 옵션",
-                "주요 특징",
-                "장점",
-                "단점",
-                "근거·출처"
-              ],
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 매스 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "mass_strategy_options": ["전략 옵션", "주요 특징", "장점", "단점", "적용 조건", "근거·출처"],
+            "placement_direction": ["배치 요소", "방향성", "근거", "제약사항", "근거·출처"],
+            "spatial_framework": ["구성 요소", "배치 원칙", "공간 관계", "기능 연계", "근거·출처"],
+            "mass_function_allocation": ["매스", "주요 기능", "배치 원칙", "면적 비율", "근거·출처"],
+            "circulation_accessibility": ["동선 요소", "계획 내용", "접근성 기준", "우선순위", "근거·출처"]
+          },
+          "analysis_sections": {
+            "mass_strategy_analysis": {
+              "required_elements": ["전략 옵션", "주요 특징", "장점", "단점"],
               "narrative_template": "매스 전략 분석 방법론 → (AI 추론) 전략 옵션 도출 → 근거·출처 명시 → 결론 · 전략의 적합성"
             },
-            "배치 방향성": {
-              "table_title": "배치 방향성 설정표",
-              "required_columns": [
-                "배치 요소",
-                "방향성",
-                "근거",
-                "근거·출처"
-              ],
+            "placement_planning": {
+              "required_elements": ["배치 요소", "방향성", "근거"],
               "narrative_template": "배치 방향성 설정 과정 → (AI 추론) 방향성 결정 근거 → 근거·출처 명시 → 결론 · 배치의 효율성"
             },
-            "공간 구성 기본 틀": {
-              "table_title": "공간 구성 기본 틀",
-              "required_columns": [
-                "구성 요소",
-                "배치 원칙",
-                "공간 관계",
-                "근거·출처"
-              ],
+            "spatial_composition": {
+              "required_elements": ["구성 요소", "배치 원칙", "공간 관계"],
               "narrative_template": "공간 구성 계획 과정 → (AI 추론) 구성 원칙 도출 → 근거·출처 명시 → 결론 · 구성의 합리성"
-            },
-            "매스별 기능 배치": {
-              "table_title": "매스별 기능 배치 계획표",
-              "required_columns": [
-                "매스",
-                "주요 기능",
-                "배치 원칙",
-                "근거·출처"
-              ],
-              "narrative_template": "기능 배치 계획 과정 → (AI 추론) 배치 원칙 설정 → 근거·출처 명시 → 결론 · 배치의 효율성"
-            },
-            "동선 및 접근성": {
-              "table_title": "동선 및 접근성 계획표",
-              "required_columns": [
-                "동선 요소",
-                "계획 내용",
-                "접근성 기준",
-                "근거·출처"
-              ],
-              "narrative_template": "동선 계획 과정 → (AI 추론) 접근성 기준 설정 → 근거·출처 명시 → 결론 · 동선의 최적화"
             }
           }
         }
@@ -1226,7 +1575,33 @@
             "공간 계획의 효율성",
             "프로그램 요구사항 충족도",
             "면적 활용의 최적화"
-          ]
+          ],
+          "scoring": {
+            "criteria": [
+              "프로그램 충족도",
+              "면적 효율성",
+              "공간 활용도",
+              "동선 효율성",
+              "확장성",
+              "유연성"
+            ],
+            "scale": "1(낮음)–5(높음)",
+            "weights": {
+              "프로그램충족도": 0.30,
+              "면적효율성": 0.25,
+              "공간활용도": 0.20,
+              "동선효율성": 0.15,
+              "확장성": 0.05,
+              "유연성": 0.05
+            },
+            "efficiency_metrics": {
+              "net_to_gross_ratio": "순면적/연면적 비율",
+              "circulation_efficiency": "동선 효율성",
+              "space_utilization": "공간 활용도",
+              "program_compliance": "프로그램 충족도"
+            },
+            "weights_overrides_allowed": true
+          }
         },
         "output_structure": [
           "프로그램별 면적 요구사항",
@@ -1267,57 +1642,37 @@
             "공간 계획 도식",
             "효율성 분석 차트"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 면적 프로그래밍 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "프로그램별 면적 요구사항": {
-              "table_title": "프로그램별 면적 요구사항 분석표",
-              "required_columns": [
-                "프로그램",
-                "요구 면적",
-                "근거",
-                "근거·출처"
-              ],
-              "narrative_template": "면적 요구사항 분석 방법론 → (AI 추론) 요구 면적 도출 → 근거·출처 명시 → 결론 · 요구사항의 적절성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 면적 프로그래밍 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "program_area_requirements": ["프로그램", "요구 면적", "기준", "우선순위", "근거·출처"],
+            "area_allocation_strategy": ["배분 전략", "적용 프로그램", "배분 원칙", "기대 효과", "근거·출처"],
+            "space_planning": ["공간", "면적", "비율", "배치", "특징", "근거·출처"],
+            "efficiency_analysis": ["효율성 지표", "현재 값", "기준값", "평가", "개선점", "근거·출처"],
+            "optimization_plan": ["최적화 항목", "현재 상태", "개선 방안", "기대 효과", "근거·출처"],
+            "area_summary": ["구분", "면적", "비율", "특징", "근거·출처"]
+          },
+          "analysis_sections": {
+            "program_analysis": {
+              "required_elements": ["프로그램", "요구 면적", "기준", "우선순위"],
+              "narrative_template": "프로그램 분석 과정 → (AI 추론) 요구 면적 도출 → 근거·출처 명시 → 결론 · 요구사항의 적절성"
             },
-            "면적 배분 전략": {
-              "table_title": "면적 배분 전략표",
-              "required_columns": [
-                "배분 전략",
-                "내용",
-                "기대 효과",
-                "근거·출처"
-              ],
+            "allocation_strategy": {
+              "required_elements": ["배분 전략", "적용 프로그램", "배분 원칙", "기대 효과"],
               "narrative_template": "면적 배분 전략 수립 과정 → (AI 추론) 전략 도출 → 근거·출처 명시 → 결론 · 전략의 효과"
             },
-            "공간 계획": {
-              "table_title": "공간 계획표",
-              "required_columns": [
-                "공간",
-                "면적",
-                "배치",
-                "근거·출처"
-              ],
+            "space_planning": {
+              "required_elements": ["공간", "면적", "비율", "배치", "특징"],
               "narrative_template": "공간 계획 수립 과정 → (AI 추론) 공간 배치 도출 → 근거·출처 명시 → 결론 · 계획의 효율성"
             },
-            "면적 효율성 분석": {
-              "table_title": "면적 효율성 분석표",
-              "required_columns": [
-                "분석 항목",
-                "현재 상태",
-                "개선점",
-                "근거·출처"
-              ],
-              "narrative_template": "효율성 분석 과정 → (AI 추론) 효율성 평가 → 근거·출처 명시 → 결론 · 효율성 개선 방안"
+            "efficiency_evaluation": {
+              "required_elements": ["효율성 지표", "현재 값", "기준값", "평가", "개선점"],
+              "narrative_template": "효율성 평가 과정 → (AI 추론) 효율성 분석 → 근거·출처 명시 → 결론 · 효율성 개선 방안"
             },
-            "최적화 방안": {
-              "table_title": "최적화 방안표",
-              "required_columns": [
-                "최적화 항목",
-                "구체적 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
-              "narrative_template": "최적화 방안 도출 과정 → (AI 추론) 최적화 방안 설정 → 근거·출처 명시 → 결론 · 최적화 효과"
+            "optimization_planning": {
+              "required_elements": ["최적화 항목", "현재 상태", "개선 방안", "기대 효과"],
+              "narrative_template": "최적화 계획 수립 과정 → (AI 추론) 최적화 방안 도출 → 근거·출처 명시 → 결론 · 최적화 효과"
             }
           }
         }
@@ -1384,61 +1739,44 @@
           "language_tone": "도식적, 공간적, 실무적",
           "target_format": "각 섹션별로 표를 우선 제시한 후, 즉시 하단에 '해설' 소제목으로 4-8문장의 상세 서술 추가",
           "visual_elements": [
-            "스키매틱 평면도",
-            "스키매틱 단면도",
-            "공간 관계 다이어그램",
-            "동선 다이어그램"
+            "스키매틱 평면도 (1:200 또는 1:500)",
+            "스키매틱 단면도 (1:200)",
+            "공간 관계 다이어그램 (버블 다이어그램)",
+            "동선 다이어그램 (사용자별 동선)",
+            "층별 기능 배치도",
+            "공간 구성 개념도",
+            "동선 분석 매트릭스"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 스키매틱 계획 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "스키매틱 평면 계획": {
-              "table_title": "스키매틱 평면 계획표",
-              "required_columns": [
-                "공간",
-                "위치",
-                "면적",
-                "근거·출처"
-              ],
-              "narrative_template": "평면 계획 수립 방법론 → (AI 추론) 공간 배치 도출 → 근거·출처 명시 → 결론 · 평면 계획의 효율성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 스키매틱 계획 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "schematic_floor_plan": ["공간", "위치", "면적", "기능", "특징", "근거·출처"],
+            "schematic_section_plan": ["층", "주요 기능", "높이", "특징", "공간 관계", "근거·출처"],
+            "space_relationships": ["공간 관계", "유형", "연결 방식", "특징", "설계 원칙", "근거·출처"],
+            "circulation_planning": ["동선 유형", "경로", "특징", "효율성", "개선점", "근거·출처"],
+            "schematic_verification": ["검증 항목", "기준", "현재 상태", "평가", "개선점", "근거·출처"],
+            "space_hierarchy": ["공간 계층", "공간명", "중요도", "접근성", "특징", "근거·출처"]
+          },
+          "analysis_sections": {
+            "floor_planning": {
+              "required_elements": ["공간", "위치", "면적", "기능", "특징"],
+              "narrative_template": "평면 계획 수립 과정 → (AI 추론) 공간 배치 도출 → 근거·출처 명시 → 결론 · 평면 계획의 효율성"
             },
-            "스키매틱 단면 계획": {
-              "table_title": "스키매틱 단면 계획표",
-              "required_columns": [
-                "층",
-                "주요 기능",
-                "높이",
-                "근거·출처"
-              ],
+            "section_planning": {
+              "required_elements": ["층", "주요 기능", "높이", "특징", "공간 관계"],
               "narrative_template": "단면 계획 수립 과정 → (AI 추론) 층별 구성 도출 → 근거·출처 명시 → 결론 · 단면 계획의 적절성"
             },
-            "공간 간 관계": {
-              "table_title": "공간 간 관계 설정표",
-              "required_columns": [
-                "공간 관계",
-                "유형",
-                "특징",
-                "근거·출처"
-              ],
-              "narrative_template": "공간 관계 설정 과정 → (AI 추론) 관계 유형 도출 → 근거·출처 명시 → 결론 · 공간 관계의 합리성"
+            "space_relationship_analysis": {
+              "required_elements": ["공간 관계", "유형", "연결 방식", "특징", "설계 원칙"],
+              "narrative_template": "공간 관계 분석 과정 → (AI 추론) 관계 유형 도출 → 근거·출처 명시 → 결론 · 공간 관계의 합리성"
             },
-            "동선 계획": {
-              "table_title": "동선 계획표",
-              "required_columns": [
-                "동선 유형",
-                "경로",
-                "특징",
-                "근거·출처"
-              ],
-              "narrative_template": "동선 계획 수립 과정 → (AI 추론) 동선 경로 도출 → 근거·출처 명시 → 결론 · 동선의 최적화"
+            "circulation_analysis": {
+              "required_elements": ["동선 유형", "경로", "특징", "효율성", "개선점"],
+              "narrative_template": "동선 분석 과정 → (AI 추론) 동선 경로 도출 → 근거·출처 명시 → 결론 · 동선의 최적화"
             },
-            "스키매틱 계획 검증": {
-              "table_title": "스키매틱 계획 검증표",
-              "required_columns": [
-                "검증 항목",
-                "결과",
-                "개선점",
-                "근거·출처"
-              ],
+            "schematic_validation": {
+              "required_elements": ["검증 항목", "기준", "현재 상태", "평가", "개선점"],
               "narrative_template": "스키매틱 계획 검증 과정 → (AI 추론) 검증 결과 분석 → 근거·출처 명시 → 결론 · 검증 결과의 의미"
             }
           }
@@ -1506,60 +1844,46 @@
           "language_tone": "데이터 기반, 사용자 중심, 실무적",
           "target_format": "각 섹션별로 표를 우선 제시한 후, 즉시 하단에 '해설' 소제목으로 4-8문장의 상세 서술 추가",
           "visual_elements": [
-            "동선 시뮬레이션 다이어그램",
-            "사용자 경험 맵",
-            "최적화 전략 차트"
+            "사용자 유형별 동선 다이어그램 (Persona별)",
+            "동선 시뮬레이션 결과 차트 (시간/거리 분석)",
+            "사용자 경험 맵 (Customer Journey Map)",
+            "동선 최적화 전략 다이어그램",
+            "공간 최적화 방안 시각화",
+            "사용자 경험 개선 프로세스 플로우차트",
+            "동선 효율성 분석 매트릭스",
+            "사용자 만족도 예측 차트"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 동선 최적화 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "사용자 유형별 동선 시나리오": {
-              "table_title": "사용자 유형별 동선 시나리오표",
-              "required_columns": [
-                "사용자 유형",
-                "주요 동선",
-                "특징",
-                "근거·출처"
-              ],
-              "narrative_template": "사용자 유형 분석 방법론 → (AI 추론) 동선 시나리오 도출 → 근거·출처 명시 → 결론 · 시나리오의 대표성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 동선 최적화 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "user_persona_analysis": ["사용자 유형", "특징", "주요 동선", "요구사항", "우선순위", "근거·출처"],
+            "circulation_scenario": ["시나리오", "사용자 유형", "동선 경로", "소요 시간", "특징", "근거·출처"],
+            "simulation_results": ["시뮬레이션 항목", "현재 상태", "목표값", "개선 효과", "분석 결과", "근거·출처"],
+            "optimization_strategy": ["최적화 영역", "현재 문제점", "개선 전략", "기대 효과", "실행 방안", "근거·출처"],
+            "space_optimization": ["공간 요소", "현재 상태", "최적화 방안", "기대 효과", "투자 비용", "근거·출처"],
+            "ux_improvement": ["개선 영역", "현재 상태", "개선안", "기대 효과", "우선순위", "근거·출처"],
+            "circulation_efficiency": ["효율성 지표", "현재 값", "목표값", "개선 방안", "예상 효과", "근거·출처"]
+          },
+          "analysis_sections": {
+            "user_analysis": {
+              "required_elements": ["사용자 유형", "특징", "주요 동선", "요구사항", "우선순위"],
+              "narrative_template": "사용자 분석 과정 → (AI 추론) 사용자 유형 도출 → 근거·출처 명시 → 결론 · 사용자 특성의 대표성"
             },
-            "동선 시뮬레이션 결과": {
-              "table_title": "동선 시뮬레이션 결과표",
-              "required_columns": [
-                "시뮬레이션 항목",
-                "결과",
-                "분석",
-                "근거·출처"
-              ],
+            "circulation_simulation": {
+              "required_elements": ["시나리오", "동선 경로", "소요 시간", "특징", "분석 결과"],
               "narrative_template": "동선 시뮬레이션 실행 과정 → (AI 추론) 시뮬레이션 결과 분석 → 근거·출처 명시 → 결론 · 시뮬레이션 결과의 의미"
             },
-            "동선 최적화 전략": {
-              "table_title": "동선 최적화 전략표",
-              "required_columns": [
-                "최적화 영역",
-                "전략",
-                "기대 효과",
-                "근거·출처"
-              ],
-              "narrative_template": "동선 최적화 전략 도출 과정 → (AI 추론) 최적화 방안 설정 → 근거·출처 명시 → 결론 · 최적화 효과"
+            "optimization_planning": {
+              "required_elements": ["최적화 영역", "현재 문제점", "개선 전략", "기대 효과", "실행 방안"],
+              "narrative_template": "최적화 전략 도출 과정 → (AI 추론) 최적화 방안 설정 → 근거·출처 명시 → 결론 · 최적화 효과"
             },
-            "공간 최적화 방안": {
-              "table_title": "공간 최적화 방안표",
-              "required_columns": [
-                "최적화 항목",
-                "구체적 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
+            "space_optimization": {
+              "required_elements": ["공간 요소", "현재 상태", "최적화 방안", "기대 효과", "투자 비용"],
               "narrative_template": "공간 최적화 방안 수립 과정 → (AI 추론) 최적화 방안 도출 → 근거·출처 명시 → 결론 · 최적화 효과"
             },
-            "사용자 경험 개선안": {
-              "table_title": "사용자 경험 개선안표",
-              "required_columns": [
-                "개선 영역",
-                "개선안",
-                "기대 효과",
-                "근거·출처"
-              ],
+            "ux_improvement": {
+              "required_elements": ["개선 영역", "현재 상태", "개선안", "기대 효과", "우선순위"],
               "narrative_template": "사용자 경험 개선안 도출 과정 → (AI 추론) 개선안 설정 → 근거·출처 명시 → 결론 · 개선 효과"
             }
           }
@@ -1631,60 +1955,207 @@
             "우선순위 매트릭스",
             "실행 방안 다이어그램"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 요구사항 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "전체 분석 결과 종합": {
-              "table_title": "전체 분석 결과 종합표",
-              "required_columns": [
-                "분석 영역",
-                "주요 결과",
-                "핵심 인사이트",
-                "근거·출처"
-              ],
-              "narrative_template": "분석 결과 종합 방법론 → (AI 추론) 핵심 인사이트 도출 → 근거·출처 명시 → 결론 · 종합 결과의 의미"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 요구사항 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "analysis_summary": ["분석 영역", "주요 결과", "핵심 인사이트", "설계 시사점", "근거·출처"],
+            "requirement_categorization": ["요구사항", "내용", "분류", "중요도", "실현가능성", "근거·출처"],
+            "priority_matrix": ["요구사항", "우선순위", "중요도", "시급성", "실현가능성", "근거·출처"],
+            "execution_plan": ["실행 항목", "구체적 방안", "담당자", "기한", "예산", "근거·출처"],
+            "final_requirements": ["요구사항", "최종 내용", "특징", "검증 방법", "근거·출처"],
+            "requirement_traceability": ["요구사항", "출처 분석", "연관 요구사항", "상충관계", "근거·출처"],
+            "implementation_checklist": ["체크 항목", "상태", "완료 기준", "담당자", "기한", "근거·출처"]
+          },
+          "analysis_sections": {
+            "analysis_integration": {
+              "required_elements": ["분석 영역", "주요 결과", "핵심 인사이트", "설계 시사점"],
+              "narrative_template": "분석 결과 종합 과정 → (AI 추론) 핵심 인사이트 도출 → 근거·출처 명시 → 결론 · 종합 결과의 의미"
             },
-            "설계 요구사항 체계화": {
-              "table_title": "설계 요구사항 체계화표",
-              "required_columns": [
-                "요구사항",
-                "내용",
-                "분류",
-                "근거·출처"
-              ],
+            "requirement_systematization": {
+              "required_elements": ["요구사항", "내용", "분류", "중요도", "실현가능성"],
               "narrative_template": "요구사항 체계화 과정 → (AI 추론) 요구사항 분류 → 근거·출처 명시 → 결론 · 체계화의 효과"
             },
-            "우선순위 설정": {
-              "table_title": "우선순위 설정표",
-              "required_columns": [
-                "요구사항",
-                "우선순위",
-                "근거",
-                "근거·출처"
-              ],
+            "priority_assessment": {
+              "required_elements": ["우선순위", "중요도", "시급성", "실현가능성", "결정 근거"],
               "narrative_template": "우선순위 설정 과정 → (AI 추론) 우선순위 결정 근거 → 근거·출처 명시 → 결론 · 우선순위의 적절성"
             },
-            "실행 방안": {
-              "table_title": "실행 방안표",
-              "required_columns": [
-                "실행 항목",
-                "구체적 방안",
-                "담당자",
-                "기한",
-                "근거·출처"
-              ],
+            "execution_planning": {
+              "required_elements": ["실행 항목", "구체적 방안", "담당자", "기한", "예산"],
               "narrative_template": "실행 방안 수립 과정 → (AI 추론) 구체적 방안 도출 → 근거·출처 명시 → 결론 · 실행 계획의 실현 가능성"
             },
-            "최종 요구사항": {
-              "table_title": "최종 요구사항 확정표",
-              "required_columns": [
-                "요구사항",
-                "최종 내용",
-                "특징",
-                "근거·출처"
-              ],
+            "final_requirement_validation": {
+              "required_elements": ["요구사항", "최종 내용", "특징", "검증 방법"],
               "narrative_template": "최종 요구사항 확정 과정 → (AI 추론) 최종 요구사항 도출 → 근거·출처 명시 → 결론 · 최종 요구사항의 가치"
             }
           }
+        }
+      }
+    },
+    {
+      "id": "structure_technology_analysis",
+      "title": "구조 기술 및 공법 분석",
+      "description": "프로젝트의 기능 요구와 외부 조건을 반영하여 합리적인 구조 시스템·공법을 도출",
+      "content_dsl": {
+        "goal": "프로그램, 경간 요구, 성능 기준, 시공 여건을 반영해 구조 시스템과 공법 후보를 비교·선정",
+        "role": "구조 기술 및 공법 분석 전문가",
+        "context": "프로그램 유형(업무/교육/주거/공공 등), 평면·단면 구성, 요구 경간, 성능 기준(내진/진동/내화 등), 현장 시공·공급망·예산 여건을 통합 검토",
+        "source": [
+          "user_inputs",
+          "pdf_summary",
+          "site_environment_analysis_results",
+          "structural_codes",
+          "local_market_data"
+        ],
+        "tasks": [
+          "프로그램·형상·경간·하중·성능 요구 조건 정리",
+          "후보 구조 시스템 도출(RC/Steel/Hybrid/Timber 등)",
+          "핵심 구조 요구 및 환경 대응 요구 도출(내진/풍/온습/화재)",
+          "공법 후보 리스트업(슬래브/보/지붕/브릿지/기초 등 세부)",
+          "후보별 성능·시공성·경제성·환경성 평가",
+          "Top N 공법 조합과 채택 사유 제시"
+        ],
+        "analysis_framework": {
+          "approach": "요구조건 기반 후보 생성 + 다기준 비교",
+          "methodology": "요구 조건 수집 → 후보 도출 → 기준별 점수화 → 가중합 비교 → 권고안 도출",
+          "criteria": [
+            "장스팬·변형·진동 성능",
+            "시공성(공기/공정/숙련도)",
+            "경제성(초기/생애주기)",
+            "환경 적합성(기후/내화/내식)",
+            "현지 적용성(자재·공급망·법규)"
+          ],
+          "scoring": {
+            "criteria": [
+              "구조성능",
+              "시공성",
+              "경제성",
+              "환경적합성",
+              "현지적합성"
+            ],
+            "scale": "1–5",
+            "weights": {
+              "구조성능": 0.30,
+              "시공성": 0.20,
+              "경제성": 0.20,
+              "환경적합성": 0.15,
+              "현지적합성": 0.15
+            },
+            "weights_overrides_allowed": true
+          }
+        },
+        "output_structure": [
+          "분석 요약표 (구분 / 내용)",
+          "공법 추천 요약표 (구조기준 / 적용부재 / 추천공법명)",
+          "공법 상세 설명표 (구조기준 / 기술항목 / 추천공법 / 기술분야 / 구조적용도 / 환경적합성 / 상세해설 / 출처링크)",
+          "최종 추천 공법표 (순위 / 구조기준 / 추천공법 / 핵심 추천사유)",
+          "종합 결론 및 서술형 해설"
+        ],
+        "quality_standards": {
+          "constraints": [
+            "모든 '(AI 추론)'에는 근거·출처 또는 추정 방식 명시",
+            "각 표 하단 4–8문장 해설(300–600자)",
+            "전체 결과 최소 1200자 이상",
+            "최종 추천 공법은 3개 이상 제시"
+          ],
+          "required_phrases": [
+            "(AI 추론)",
+            "핵심 구조 요구사항",
+            "추천 공법",
+            "근거·출처",
+            "결론 및 다음 단계"
+          ],
+          "validation_rules": [
+            "후보별 환경 적합성(기후/지진/지반/내화) 평가 포함",
+            "추천 사유는 기술·경제·환경·현지 요소의 균형 근거 제시",
+            "출처는 표준/가이드/문헌/현지 레퍼런스 중 최소 1개 포함"
+          ]
+        },
+        "presentation": {
+          "language_tone": "객관적, 실무적, 엔지니어링 중심",
+          "target_format": "표 우선 → 즉시 하단에 '해설' 4–8문장",
+          "visual_elements": [
+            "구조 시스템 비교 다이어그램",
+            "장스팬·진동 제어 개념도",
+            "하중 전달 개념 스케치"
+          ],
+          "options": {
+            "include_diagrams": true,
+            "table_then_narrative": true,
+            "show_score_breakdown": true
+          },
+          "explanatory_template": "방법 소개 → (AI 추론) 핵심 구조 인사이트 → 근거·출처 → 종합 결론·한계·다음 단계"
+        },
+        "data_contract": {
+          "expected_structure_fields": [
+            "program_types", 
+            "plan_section_pattern", 
+            "span_requirements",  
+            "vertical_clearance_requirements",
+            "design_loads",    
+            "vibration_criteria?",  
+            "foundation_conditions",   
+            "seismic_zone_or_code_set", 
+            "climate_characteristics",      
+            "fire_safety_codes",
+            "local_material_availability",
+            "logistics_constraints?"      
+          ],
+          "missing_policy": "누락 시 (AI 추론) 가정값 제시 + '추가 확인 필요' 태그",
+          "locale_overrides": {
+            "KR": { "units": { "length": "m", "strength": "MPa" } },
+            "US": { "units": { "length": "ft", "strength": "psi" } },
+            "IN": { "units": { "length": "m", "strength": "MPa" } },
+            "EU": { "units": { "length": "m", "strength": "MPa" } }
+          }
+        },
+        "templates": {
+          "tables": {
+            "summary": ["구분", "내용"],
+            "methods_summary": ["구조기준", "적용부재", "추천공법명"],
+            "methods_detail": [
+              "구조기준",
+              "기술항목",
+              "추천공법명",
+              "기술분야",
+              "구조적용도",
+              "환경적합성",
+              "상세해설",
+              "출처링크"
+            ],
+            "final_recommend": [
+              "추천순위",
+              "구조기준",
+              "추천공법명",
+              "핵심추천사유"
+            ]
+          },
+          "alternatives": [
+            {
+              "name": "포스트텐션 콘크리트 슬래브",
+              "idea": "프리스트레스트를 이용한 장스팬 바닥 슬래브",
+              "pros": ["얇은 두께/장스팬", "처짐·균열 제어", "경제성"],
+              "cons": ["전문화 공정", "긴장·품질관리 중요"],
+              "conditions": ["무주 공간 필요", "층고 제약 존재"],
+              "tags": ["PT", "장스팬", "경제성"]
+            },
+            {
+              "name": "철골-콘크리트 합성보",
+              "idea": "철골보+콘크리트 슬래브 일체화로 깊이 절감 및 진동 성능 향상",
+              "pros": ["층고 절감", "진동 성능↑", "자원 효율"],
+              "cons": ["제작/시공 정밀도 요구", "원자재 가격 변동 영향"],
+              "conditions": ["중·장스팬 보 필요", "설비 공간 확보 중요"],
+              "tags": ["Composite", "진동제어", "층고절감"]
+            },
+            {
+              "name": "경량 강구조 트러스",
+              "idea": "지붕/브릿지 등 장스팬 경량 구조",
+              "pros": ["자중 대비 강성↑", "대공간 실현", "형태 자유도"],
+              "cons": ["내화·단열 보완 필요", "열교·내식 대책 필요"],
+              "conditions": ["대공간 지붕/브릿지", "경량화 핵심"],
+              "tags": ["Truss", "경량", "대공간"]
+            }
+          ]
         }
       }
     },
@@ -1753,56 +2224,91 @@
             "경제성 분석 다이어그램",
             "투자 의사결정 매트릭스"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 비용 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "비용 추정 항목": {
-              "table_title": "비용 추정 항목 분석표",
-              "required_columns": [
-                "비용 항목",
-                "내용",
-                "추정 방식",
-                "근거·출처"
-              ],
-              "narrative_template": "비용 항목 분석 방법론 → (AI 추론) 비용 항목 도출 → 근거·출처 명시 → 결론 · 비용 항목의 적절성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 비용 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "data_contract": {
+          "expected_cost_fields": [
+            "project_scale",
+            "building_type",
+            "construction_method",
+            "site_conditions",
+            "material_quality_level",
+            "labor_cost_region",
+            "inflation_rate",
+            "exchange_rate",
+            "tax_rate",
+            "financing_cost",
+            "contingency_rate",
+            "escalation_rate"
+          ],
+          "missing_policy": "누락 시 (AI 추론) 표준값 제시 + '추가 확인 필요' 태그",
+          "locale_overrides": {
+            "KR": { 
+              "currency": "KRW", 
+              "units": { "area": "m²", "volume": "m³", "cost": "천원/m²" },
+              "standard_rates": {
+                "contingency": 0.10,
+                "escalation": 0.03,
+                "financing": 0.05
+              }
             },
-            "단가 기준": {
-              "table_title": "단가 기준 조사표",
-              "required_columns": [
-                "단가 항목",
-                "단가",
-                "기준",
-                "근거·출처"
-              ],
-              "narrative_template": "단가 기준 조사 과정 → (AI 추론) 단가 기준 도출 → 근거·출처 명시 → 결론 · 단가 기준의 적절성"
+            "US": { 
+              "currency": "USD", 
+              "units": { "area": "ft²", "volume": "ft³", "cost": "$/ft²" },
+              "standard_rates": {
+                "contingency": 0.15,
+                "escalation": 0.04,
+                "financing": 0.06
+              }
             },
-            "비용 추정 결과": {
-              "table_title": "비용 추정 결과표",
-              "required_columns": [
-                "비용 항목",
-                "추정 금액",
-                "근거",
-                "근거·출처"
-              ],
-              "narrative_template": "비용 추정 실행 과정 → (AI 추론) 비용 추정 결과 분석 → 근거·출처 명시 → 결론 · 비용 추정의 정확성"
+            "IN": { 
+              "currency": "INR", 
+              "units": { "area": "m²", "volume": "m³", "cost": "₹/m²" },
+              "standard_rates": {
+                "contingency": 0.12,
+                "escalation": 0.05,
+                "financing": 0.08
+              }
             },
-            "경제성 분석": {
-              "table_title": "경제성 분석표",
-              "required_columns": [
-                "분석 항목",
-                "결과",
-                "평가",
-                "근거·출처"
-              ],
+            "EU": { 
+              "currency": "EUR", 
+              "units": { "area": "m²", "volume": "m³", "cost": "€/m²" },
+              "standard_rates": {
+                "contingency": 0.08,
+                "escalation": 0.02,
+                "financing": 0.04
+              }
+            }
+          }
+        },
+        "templates": {
+          "tables": {
+            "cost_breakdown": ["비용 분류", "세부 항목", "수량", "단가", "금액", "비율", "근거·출처"],
+            "unit_cost_analysis": ["공종", "단위", "표준 단가", "조정 계수", "적용 단가", "근거·출처"],
+            "cost_estimation_summary": ["비용 항목", "추정 금액", "비율", "신뢰도", "근거·출처"],
+            "economic_analysis": ["분석 지표", "계산 결과", "기준값", "평가", "근거·출처"],
+            "investment_decision": ["의사결정 요소", "분석 결과", "권고사항", "근거·출처"],
+            "cost_risk_analysis": ["리스크 요소", "영향도", "발생 확률", "대응 방안", "근거·출처"]
+          },
+          "analysis_sections": {
+            "cost_breakdown_analysis": {
+              "required_elements": ["비용 분류", "세부 항목", "수량", "단가", "금액"],
+              "narrative_template": "비용 분석 과정 → (AI 추론) 비용 구조 도출 → 근거·출처 명시 → 결론 · 비용 구조의 특성"
+            },
+            "unit_cost_research": {
+              "required_elements": ["공종", "표준 단가", "조정 계수", "적용 단가"],
+              "narrative_template": "단가 조사 과정 → (AI 추론) 단가 기준 도출 → 근거·출처 명시 → 결론 · 단가 기준의 적절성"
+            },
+            "cost_estimation_execution": {
+              "required_elements": ["추정 방법", "추정 결과", "신뢰도", "불확실성"],
+              "narrative_template": "비용 추정 실행 과정 → (AI 추론) 추정 결과 분석 → 근거·출처 명시 → 결론 · 추정의 정확성"
+            },
+            "economic_feasibility": {
+              "required_elements": ["분석 지표", "계산 결과", "기준값", "평가"],
               "narrative_template": "경제성 분석 과정 → (AI 추론) 경제성 평가 → 근거·출처 명시 → 결론 · 경제성 분석 결과"
             },
-            "투자 의사결정 지원": {
-              "table_title": "투자 의사결정 지원표",
-              "required_columns": [
-                "의사결정 항목",
-                "권고사항",
-                "근거",
-                "근거·출처"
-              ],
+            "investment_recommendation": {
+              "required_elements": ["의사결정 요소", "분석 결과", "권고사항", "실행 방안"],
               "narrative_template": "투자 의사결정 지원 과정 → (AI 추론) 권고사항 도출 → 근거·출처 명시 → 결론 · 투자 의사결정의 적절성"
             }
           }
@@ -1955,7 +2461,34 @@
             "실현 가능성",
             "자원 배정의 적절성",
             "리스크 관리의 효과성"
-          ]
+          ],
+          "scoring": {
+            "criteria": [
+              "시급성",
+              "중요도",
+              "실현가능성",
+              "영향도",
+              "자원가용성",
+              "의존성"
+            ],
+            "scale": "1(낮음)–5(높음)",
+            "weights": {
+              "시급성": 0.25,
+              "중요도": 0.25,
+              "실현가능성": 0.20,
+              "영향도": 0.15,
+              "자원가용성": 0.10,
+              "의존성": 0.05
+            },
+            "priority_matrix": {
+              "high_high": "즉시 실행 (우선순위 1)",
+              "high_medium": "단기 실행 (우선순위 2)",
+              "medium_medium": "중기 실행 (우선순위 3)",
+              "low_medium": "장기 실행 (우선순위 4)",
+              "low_low": "모니터링 (우선순위 5)"
+            },
+            "weights_overrides_allowed": true
+          }
         },
         "output_structure": [
           "실행 우선순위",
@@ -1996,56 +2529,37 @@
             "우선순위 매트릭스",
             "리스크 관리 플로우차트"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 실행 계획 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "실행 우선순위": {
-              "table_title": "실행 우선순위 설정표",
-              "required_columns": [
-                "실행 항목",
-                "우선순위",
-                "근거",
-                "근거·출처"
-              ],
-              "narrative_template": "우선순위 설정 방법론 → (AI 추론) 우선순위 결정 근거 → 근거·출처 명시 → 결론 · 우선순위의 적절성"
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 실행 계획 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "priority_assessment": ["실행 항목", "시급성", "중요도", "실현가능성", "영향도", "우선순위 점수", "우선순위 등급", "근거·출처"],
+            "action_plan": ["실행 항목", "구체적 계획", "기대 효과", "성공 지표", "실행 단계", "근거·출처"],
+            "resource_allocation": ["담당자", "실행 항목", "일정", "필요 자원", "예산", "근거·출처"],
+            "timeline_planning": ["실행 항목", "시작일", "완료일", "마일스톤", "의존관계", "근거·출처"],
+            "budget_planning": ["예산 항목", "예상 비용", "실제 비용", "차이", "조정 방안", "근거·출처"],
+            "risk_management": ["리스크 항목", "발생 확률", "영향도", "관리 방안", "담당자", "근거·출처"],
+            "progress_tracking": ["실행 항목", "현재 상태", "진행률", "이슈", "조치사항", "근거·출처"]
+          },
+          "analysis_sections": {
+            "priority_planning": {
+              "required_elements": ["실행 항목", "시급성", "중요도", "실현가능성", "영향도", "우선순위"],
+              "narrative_template": "우선순위 설정 과정 → (AI 추론) 우선순위 결정 근거 → 근거·출처 명시 → 결론 · 우선순위의 적절성"
             },
-            "구체적 실행 계획": {
-              "table_title": "구체적 실행 계획표",
-              "required_columns": [
-                "실행 항목",
-                "구체적 계획",
-                "기대 효과",
-                "근거·출처"
-              ],
+            "action_planning": {
+              "required_elements": ["실행 항목", "구체적 계획", "기대 효과", "성공 지표", "실행 단계"],
               "narrative_template": "실행 계획 수립 과정 → (AI 추론) 구체적 계획 도출 → 근거·출처 명시 → 결론 · 실행 계획의 실현 가능성"
             },
-            "담당자 및 일정": {
-              "table_title": "담당자 및 일정 배정표",
-              "required_columns": [
-                "실행 항목",
-                "담당자",
-                "일정",
-                "근거·출처"
-              ],
-              "narrative_template": "담당자 및 일정 배정 과정 → (AI 추론) 배정 근거 → 근거·출처 명시 → 결론 · 배정의 적절성"
+            "resource_planning": {
+              "required_elements": ["담당자", "실행 항목", "일정", "필요 자원", "예산"],
+              "narrative_template": "자원 배정 과정 → (AI 추론) 자원 배정 근거 → 근거·출처 명시 → 결론 · 자원 계획의 적절성"
             },
-            "예산 및 자원 계획": {
-              "table_title": "예산 및 자원 계획표",
-              "required_columns": [
-                "자원 항목",
-                "예산",
-                "배정 계획",
-                "근거·출처"
-              ],
-              "narrative_template": "예산 및 자원 계획 수립 과정 → (AI 추론) 자원 배정 근거 → 근거·출처 명시 → 결론 · 자원 계획의 적절성"
+            "timeline_management": {
+              "required_elements": ["실행 항목", "시작일", "완료일", "마일스톤", "의존관계"],
+              "narrative_template": "일정 계획 과정 → (AI 추론) 일정 배정 근거 → 근거·출처 명시 → 결론 · 일정 계획의 적절성"
             },
-            "리스크 관리 계획": {
-              "table_title": "리스크 관리 계획표",
-              "required_columns": [
-                "리스크 항목",
-                "관리 방안",
-                "담당자",
-                "근거·출처"
-              ],
+            "risk_planning": {
+              "required_elements": ["리스크 항목", "발생 확률", "영향도", "관리 방안", "담당자"],
               "narrative_template": "리스크 관리 계획 수립 과정 → (AI 추론) 관리 방안 도출 → 근거·출처 명시 → 결론 · 리스크 관리의 효과성"
             }
           }
@@ -2117,56 +2631,59 @@
             "핵심 메시지 맵",
             "작성 가이드 플로우차트"
           ],
-          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 제안서 프레임워크 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제",
-          "section_templates": {
-            "제안서 구조 설계": {
-              "table_title": "제안서 구조 설계표",
-              "required_columns": [
-                "섹션",
-                "주요 내용",
-                "목적",
-                "근거·출처"
-              ],
-              "narrative_template": "제안서 구조 설계 방법론 → (AI 추론) 구조 설계 근거 → 근거·출처 명시 → 결론 · 구조의 논리성"
+          "options": {
+            "proposal_type": {
+              "technical_proposal": "기술 제안서 중심",
+              "business_proposal": "사업 제안서 중심",
+              "comprehensive_proposal": "종합 제안서"
             },
-            "핵심 메시지": {
-              "table_title": "핵심 메시지 도출표",
-              "required_columns": [
-                "메시지",
-                "내용",
-                "강조 포인트",
-                "근거·출처"
-              ],
+            "target_audience": {
+              "decision_makers": "의사결정자 중심",
+              "technical_reviewers": "기술 검토자 중심",
+              "mixed_audience": "혼합 대상"
+            },
+            "presentation_style": {
+              "executive_summary": "요약 중심",
+              "detailed_analysis": "상세 분석 중심",
+              "balanced": "균형적"
+            },
+            "format_preference": {
+              "traditional": "전통적 형식",
+              "modern": "현대적 형식",
+              "interactive": "인터랙티브 요소 포함"
+            }
+          },
+          "explanatory_template": "분석 방법론 소개 → (AI 추론) 핵심 제안서 프레임워크 인사이트 도출 → 구체적 근거·출처 제시 → 종합 결론 · 분석의 한계점 · 다음 단계 과제"
+        },
+        "templates": {
+          "tables": {
+            "proposal_structure": ["섹션", "주요 내용", "목적", "페이지 수", "작성 포인트", "근거·출처"],
+            "core_messages": ["메시지", "내용", "강조 포인트", "지원 근거", "전달 방법", "근거·출처"],
+            "section_guidelines": ["섹션", "작성 가이드", "필수 요소", "주의사항", "예시", "근거·출처"],
+            "differentiation_points": ["차별화 포인트", "강조 방안", "기대 효과", "구체적 표현", "근거·출처"],
+            "quality_management": ["관리 항목", "관리 방안", "담당자", "검토 기준", "근거·출처"],
+            "proposal_outline": ["목차", "주요 내용", "페이지", "작성자", "완료일", "근거·출처"],
+            "review_checklist": ["검토 항목", "검토 기준", "담당자", "완료 여부", "근거·출처"]
+          },
+          "analysis_sections": {
+            "structure_design": {
+              "required_elements": ["섹션", "주요 내용", "목적", "페이지 수", "작성 포인트"],
+              "narrative_template": "제안서 구조 설계 과정 → (AI 추론) 구조 설계 근거 → 근거·출처 명시 → 결론 · 구조의 논리성"
+            },
+            "message_development": {
+              "required_elements": ["메시지", "내용", "강조 포인트", "지원 근거", "전달 방법"],
               "narrative_template": "핵심 메시지 도출 과정 → (AI 추론) 메시지 선정 근거 → 근거·출처 명시 → 결론 · 메시지의 효과성"
             },
-            "섹션별 작성 가이드": {
-              "table_title": "섹션별 작성 가이드표",
-              "required_columns": [
-                "섹션",
-                "작성 가이드",
-                "주의사항",
-                "근거·출처"
-              ],
+            "guideline_provision": {
+              "required_elements": ["섹션", "작성 가이드", "필수 요소", "주의사항", "예시"],
               "narrative_template": "작성 가이드 제공 과정 → (AI 추론) 가이드 도출 → 근거·출처 명시 → 결론 · 가이드의 실용성"
             },
-            "차별화 포인트 강조": {
-              "table_title": "차별화 포인트 강조 방안표",
-              "required_columns": [
-                "차별화 포인트",
-                "강조 방안",
-                "기대 효과",
-                "근거·출처"
-              ],
+            "differentiation_emphasis": {
+              "required_elements": ["차별화 포인트", "강조 방안", "기대 효과", "구체적 표현"],
               "narrative_template": "차별화 포인트 강조 방안 도출 과정 → (AI 추론) 강조 방안 설정 → 근거·출처 명시 → 결론 · 강조 방안의 효과성"
             },
-            "품질 관리 체계": {
-              "table_title": "품질 관리 체계표",
-              "required_columns": [
-                "관리 항목",
-                "관리 방안",
-                "담당자",
-                "근거·출처"
-              ],
+            "quality_management": {
+              "required_elements": ["관리 항목", "관리 방안", "담당자", "검토 기준"],
               "narrative_template": "품질 관리 체계 수립 과정 → (AI 추론) 관리 방안 도출 → 근거·출처 명시 → 결론 · 품질 관리의 효과성"
             }
           }

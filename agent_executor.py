@@ -224,3 +224,62 @@ def execute_midjourney_prompt(prompt):
         return value
     
     return execute_with_retry(_run)
+
+# --- 새 블록들을 위한 Signature & ReAct 클래스들
+class SiteEnvironmentAnalysisSignature(Signature):
+    input = InputField(desc="분석 목표, PDF, 맥락 등")
+    site_environment_analysis = OutputField(desc="대지 환경 분석 결과. 지형, 향, 기후, 지반, 인프라 등 종합 분석")
+
+class SiteEnvironmentAnalysisReAct(ReAct):
+    def __init__(self):
+        super().__init__(SiteEnvironmentAnalysisSignature)
+
+class StructureTechnologyAnalysisSignature(Signature):
+    input = InputField(desc="분석 목표, PDF, 맥락 등")
+    structure_technology_analysis = OutputField(desc="구조 기술 분석 결과. 구조 시스템, 기술적 요구사항, 최적화 방안")
+
+class StructureTechnologyAnalysisReAct(ReAct):
+    def __init__(self):
+        super().__init__(StructureTechnologyAnalysisSignature)
+
+class ProposalFrameworkSignature(Signature):
+    input = InputField(desc="분석 목표, PDF, 맥락 등")
+    proposal_framework = OutputField(desc="제안서 프레임워크 설계. 구조, 핵심 메시지, 작성 가이드")
+
+class ProposalFrameworkReAct(ReAct):
+    def __init__(self):
+        super().__init__(ProposalFrameworkSignature)
+
+# --- 새 블록들을 위한 실행 함수들
+def run_site_environment_analysis(full_prompt):
+    """대지 환경 분석 실행 함수"""
+    def _run():
+        result = dspy.Predict(SiteEnvironmentAnalysisSignature)(input=full_prompt)
+        value = getattr(result, "site_environment_analysis", "")
+        if not value or value.strip() == "" or "error" in value.lower():
+            return "⚠️ 결과 생성 실패: 대지 환경 분석이 정상적으로 생성되지 않았습니다."
+        return value
+    
+    return execute_with_retry(_run)
+
+def run_structure_technology_analysis(full_prompt):
+    """구조 기술 분석 실행 함수"""
+    def _run():
+        result = dspy.Predict(StructureTechnologyAnalysisSignature)(input=full_prompt)
+        value = getattr(result, "structure_technology_analysis", "")
+        if not value or value.strip() == "" or "error" in value.lower():
+            return "⚠️ 결과 생성 실패: 구조 기술 분석이 정상적으로 생성되지 않았습니다."
+        return value
+    
+    return execute_with_retry(_run)
+
+def run_proposal_framework(full_prompt):
+    """제안서 프레임워크 실행 함수"""
+    def _run():
+        result = dspy.Predict(ProposalFrameworkSignature)(input=full_prompt)
+        value = getattr(result, "proposal_framework", "")
+        if not value or value.strip() == "" or "error" in value.lower():
+            return "⚠️ 결과 생성 실패: 제안서 프레임워크가 정상적으로 생성되지 않았습니다."
+        return value
+    
+    return execute_with_retry(_run)

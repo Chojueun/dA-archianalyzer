@@ -18,7 +18,7 @@ from agent_executor import execute_agent
 from user_state import get_user_inputs, save_step_result, append_step_history
 from report_generator import generate_pdf_report, generate_word_report
 from webpage_generator import create_webpage_download_button
-from prompt_loader import load_prompt_blocks
+from dsl_to_prompt import load_prompt_blocks
 from analysis_system import (
     AnalysisSystem, PurposeType, ObjectiveType, AnalysisStep, AnalysisWorkflow
 )
@@ -385,7 +385,7 @@ def render_analysis_execution():
     # 2) prompt_loader에서 해당 단계들 매칭
     try:
         # 프롬프트 블록 로드
-        from prompt_loader import load_prompt_blocks
+        from dsl_to_prompt import load_prompt_blocks
         blocks = load_prompt_blocks()
         extra_blocks = blocks.get("extra", [])
         blocks_by_id = {b["id"]: b for b in extra_blocks}
@@ -437,6 +437,49 @@ def render_analysis_execution():
         with col1:
             st.markdown(f"현재 단계: {current_step.title}")
             st.markdown(f"**설명**: {current_step.description}")
+            
+            # 새로 추가: 블록 구조 정보 표시
+            if current_block:
+                content_dsl = current_block.get("content_dsl", {})
+                
+                # templates 정보 표시
+                if "templates" in content_dsl:
+                    templates = content_dsl["templates"]
+                    with st.expander("📋 템플릿 정보", expanded=False):
+                        if "tables" in templates:
+                            st.write(f"**표 템플릿**: {len(templates['tables'])}개")
+                            for table_name, columns in templates["tables"].items():
+                                st.write(f"- {table_name}: {len(columns)}개 컬럼")
+                        if "analysis_sections" in templates:
+                            st.write(f"**분석 섹션**: {len(templates['analysis_sections'])}개")
+                        # 새로 추가: alternatives 정보 표시
+                        if "alternatives" in templates:
+                            st.write(f"**대안 옵션**: {len(templates['alternatives'])}개")
+                            for alt in templates["alternatives"]:
+                                st.write(f"- {alt.get('name', '대안')}")
+                
+                # data_contract 정보 표시
+                if "data_contract" in content_dsl:
+                    contract = content_dsl["data_contract"]
+                    with st.expander("📊 데이터 요구사항", expanded=False):
+                        if "expected_site_fields" in contract:
+                            st.write(f"**필요한 사이트 정보**: {len(contract['expected_site_fields'])}개")
+                        if "missing_policy" in contract:
+                            st.write(f"**누락 정책**: {contract['missing_policy']}")
+                        if "locale_overrides" in contract:
+                            st.write(f"**지역 설정**: {len(contract['locale_overrides'])}개 지역")
+                
+                # analysis_framework.scoring 정보 표시
+                framework = content_dsl.get("analysis_framework", {})
+                if "scoring" in framework:
+                    scoring = framework["scoring"]
+                    with st.expander("📈 평가 기준", expanded=False):
+                        if "criteria" in scoring:
+                            st.write(f"**평가 항목**: {len(scoring['criteria'])}개")
+                        if "weights" in scoring:
+                            st.write(f"**가중치 설정**: {len(scoring['weights'])}개")
+                        if "scale" in scoring:
+                            st.write(f"**점수 범위**: {scoring['scale']}")
         
         with col2:
             # 웹 검색 체크박스
@@ -537,21 +580,46 @@ def render_analysis_execution():
                             st.markdown("---")
                             st.markdown(f"### 📋 {current_block['title']} 분석 결과")
                             
-                            output_structure = current_block.get("content_dsl", {}).get("output_structure", [])
-                            if output_structure:
-                                parsed_results = parse_analysis_result_by_structure(result, output_structure)
-                                result_tabs = st.tabs(output_structure)
-                                for i, (tab, structure_name) in enumerate(zip(result_tabs, output_structure)):
-                                    with tab:
-                                        st.markdown(f"### {structure_name}")
-                                        content = parsed_results.get(structure_name, "")
-                                        if content and not content.startswith("⚠️"):
-                                            st.markdown(content)
-                                        else:
-                                            st.warning("⚠️ 이 구조의 결과를 찾을 수 없습니다.")
+                            # 새로 추가: 템플릿 기반 결과 표시
+                            content_dsl = current_block.get("content_dsl", {})
+                            templates = content_dsl.get("templates", {})
+                            
+                            if templates and "tables" in templates:
+                                # 템플릿이 있는 경우 구조화된 표시
+                                output_structure = content_dsl.get("output_structure", [])
+                                if output_structure:
+                                    parsed_results = parse_analysis_result_by_structure(result, output_structure)
+                                    result_tabs = st.tabs(output_structure)
+                                    for i, (tab, structure_name) in enumerate(zip(result_tabs, output_structure)):
+                                        with tab:
+                                            st.markdown(f"### {structure_name}")
+                                            content = parsed_results.get(structure_name, "")
+                                            if content and not content.startswith("⚠️"):
+                                                st.markdown(content)
+                                                
+                                                # 템플릿 정보 표시
+                                                if structure_name in templates.get("tables", {}):
+                                                    table_info = templates["tables"][structure_name]
+                                                    st.info(f"📋 이 섹션은 {len(table_info)}개 컬럼의 표 형식으로 구성됩니다.")
+                                            else:
+                                                st.warning("⚠️ 이 구조의 결과를 찾을 수 없습니다.")
                             else:
-                                with st.expander(f"📋 {current_block['title']} - 분석 결과", expanded=True):
-                                    st.markdown(result)
+                                # 기존 방식: 일반 결과 표시
+                                output_structure = current_block.get("content_dsl", {}).get("output_structure", [])
+                                if output_structure:
+                                    parsed_results = parse_analysis_result_by_structure(result, output_structure)
+                                    result_tabs = st.tabs(output_structure)
+                                    for i, (tab, structure_name) in enumerate(zip(result_tabs, output_structure)):
+                                        with tab:
+                                            st.markdown(f"### {structure_name}")
+                                            content = parsed_results.get(structure_name, "")
+                                            if content and not content.startswith("⚠️"):
+                                                st.markdown(content)
+                                            else:
+                                                st.warning("⚠️ 이 구조의 결과를 찾을 수 없습니다.")
+                                else:
+                                    with st.expander(f"📋 {current_block['title']} - 분석 결과", expanded=True):
+                                        st.markdown(result)
                             
                             # 컨트롤 버튼들
                             st.markdown("---")
