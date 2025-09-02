@@ -4,11 +4,10 @@ import dspy
 from dspy import Signature, InputField, OutputField
 import re
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 import streamlit as st
 import time
 import random
-import anthropic
 
 # === Rate Limiting 및 재시도 설정 ===
 MAX_RETRIES = 5
@@ -65,7 +64,7 @@ class SiteAnalysisFields(Signature):
     zoning: str = OutputField(desc="용도지역, 지구단위계획 등")
     restrictions: str = OutputField(desc="고도제한, 일조권, 환경, 소음, 특이 규제")
     traffic: str = OutputField(desc="주변 도로, 교통, 진출입")
-    precedent_comparison: str = OutputField(desc="유사 연수원·교육시설과 비교 포인트")
+    precedent_comparison: str = OutputField(desc="유사 설계사례와 비교 포인트")
     risk_factors: str = OutputField(desc="대지·법규 관련 주요 리스크")
 
 class PDFSummary(Signature):
@@ -107,7 +106,7 @@ class AdvancedPDFAnalyzer:
             "zoning": "용도지역 정보 없음",
             "restrictions": "건축 규제 정보 없음",
             "traffic": "교통 정보 없음",
-            "precedent_comparison": "유사 사례 비교 정보 없음",
+            "precedent_comparison": "유사 설계사례 비교 정보 없음",
             "risk_factors": "리스크 요인 정보 없음"
         }
     

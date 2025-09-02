@@ -1,12 +1,9 @@
 
 #utils.py
 
-import fitz  # PyMuPDF
 import re
-from typing import Dict, Optional, List, Any
+from typing import Dict, Any
 import streamlit as st
-import json
-import time
 from datetime import datetime
 
 

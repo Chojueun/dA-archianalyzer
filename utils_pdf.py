@@ -8,7 +8,7 @@
 import streamlit as st
 import fitz  # PyMuPDF
 import re
-from typing import List, Dict, Any
+from typing import List
 
 # 전역 변수 (벡터 시스템용)
 embedder = None
@@ -170,7 +170,7 @@ def save_pdf_chunks_to_chroma(pdf_path: str, pdf_id: str = "default") -> bool:
             st.session_state.pdf_chunks = {}
         
         st.session_state.pdf_chunks[pdf_id] = text
-        st.success(f"✅ PDF가 저장되었습니다. (간단 모드)")
+        st.success(f"✅ PDF가 저장되었습니다.")
         return True
         
     except Exception as e:

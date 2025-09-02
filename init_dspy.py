@@ -5,8 +5,6 @@ import os
 import time
 import random
 from dotenv import load_dotenv
-# 순환 import 방지를 위해 제거
-# from agent_executor import RequirementTableSignature 
 import anthropic
 from anthropic import Anthropic
 
@@ -41,7 +39,6 @@ available_models = [
     "claude-opus-4-20250514",      # Opus 4
     "claude-sonnet-4-20250514",    # Sonnet 4
     "claude-3-7-sonnet-20250219",  # Sonnet 3.7
-    "claude-3-5-sonnet-20241022"   # Sonnet 3.5
 ]
 
 def get_available_models_sdk():
@@ -58,7 +55,6 @@ def get_available_models_sdk():
             "claude-opus-4-20250514", 
             "claude-sonnet-4-20250514",
             "claude-3-7-sonnet-20250219",
-            "claude-3-5-sonnet-20241022"
         ]
         
         # 허용된 모델만 필터링
@@ -81,7 +77,6 @@ def get_available_models_sdk():
             "claude-opus-4-20250514", 
             "claude-sonnet-4-20250514",
             "claude-3-7-sonnet-20250219",
-            "claude-3-5-sonnet-20241022"
         ]
         return fallback_models
 
@@ -110,7 +105,6 @@ def execute_with_sdk_with_retry(prompt: str, model: str = None, max_retries: int
     
     # 모델별 max_tokens 설정
     model_max_tokens = {
-        "claude-3-5-sonnet-20241022": 8192,      # 최대 8192 토큰
         "claude-3-7-sonnet-20250219": 8192,      # 최대 8192 토큰
         "claude-sonnet-4-20250514": 12000,       # 최대 12000 토큰
         "claude-opus-4-20250514": 12000,         # 최대 12000 토큰
@@ -158,7 +152,6 @@ def execute_with_sdk(prompt: str, model: str = None):
 def get_optimal_model(task_type: str) -> str:
     """작업 유형에 따른 최적 모델 선택"""
     model_mapping = {
-        "quick_analysis": "claude-3-5-sonnet-20241022",  # 빠른 분석
         "detailed_analysis": "claude-sonnet-4-20250514",  # 상세 분석
         "complex_analysis": "claude-opus-4-1-20250805",   # 복잡한 분석
         "cost_sensitive": "claude-3-5-sonnet-20241022",   # 비용 민감
@@ -173,7 +166,6 @@ def configure_model(model_name: str):
     
     # 모델별 max_tokens 설정
     model_max_tokens = {
-        "claude-3-5-sonnet-20241022": 8192,      # 최대 8192 토큰
         "claude-3-7-sonnet-20250219": 8192,      # 최대 8192 토큰
         "claude-sonnet-4-20250514": 12000,       # 최대 12000 토큰
         "claude-opus-4-20250514": 12000,         # 최대 12000 토큰
@@ -264,13 +256,6 @@ def get_model_info():
             "power": "높음",
             "cost": "보통",
             "best_for": "균형잡힌 분석"
-        },
-        "claude-3-5-sonnet-20241022": {
-            "name": "Claude 3.5 Sonnet",
-            "speed": "보통",
-            "power": "높음",
-            "cost": "보통",
-            "best_for": "안정적인 분석"
         }
     }
 

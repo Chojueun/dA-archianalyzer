@@ -1,18 +1,6 @@
-from utils_pdf import search_pdf_chunks  # 통합된 PDF 모듈 사용
 from search_helper import search_web_serpapi  # 주석 해제
 import json
 
-# ✅ 핵심 원칙 선언 블록 (prompt_loader.py에서 이동)
-CORE_PRINCIPLES_BLOCK = {
-    "id": "core_principles",
-    "title": "핵심 원칙 선언 및 유의사항",
-    "content": """📌 (AI 추론을 통한 분석 결과:)
-    1. **건축주 중심 접근**: 입력된 정보를 바탕으로 건축주의 명시적, 암묵적 니즈를 모두 파악합니다.
-    2. **데이터 기반 추론**: '~인 것으로 보입니다', '~를 원하시는 것 같습니다' 등 부드러운 표현을 사용하되, 모든 추론은 분석된 데이터에 근거합니다.
-    3. **사례 기반 제안**: 구체적인 국내외 사례 조사를 통해 실증적 근거를 제시합니다.
-    4. **단계별 심화 분석**: 각 단계의 분석 결과를 다음 단계에 누적 반영하여 분석의 깊이를 더합니다.
-    """
-}
 
 def load_prompt_blocks(json_path="prompt_blocks_dsl.json"):
     """
@@ -179,38 +167,37 @@ def get_web_search_for_block(block_id: str, user_inputs: dict) -> str:
     # 블록별 검색 쿼리 매핑
     search_queries = {
         "requirement_analyzer": [  # requirement_analysis → requirement_analyzer로 수정
-            f"{user_inputs.get('building_type', '건축')} 요구사항 분석 2024",
+            f"{user_inputs.get('building_type', '건축')} 요구사항 분석 2025",
             f"{user_inputs.get('building_type', '건축')} 설계 가이드라인"
         ],
         "precedent_benchmarking": [
-            f"{user_inputs.get('building_type', '건축')} 사례 2024",
+            f"{user_inputs.get('building_type', '건축')} 사례 2025",
             f"{user_inputs.get('building_type', '건축')} 벤치마킹"
         ],
         "design_trend_application": [
-            "건축 디자인 트렌드 2024",
-            "건축 기술 트렌드 2024"
+            "건축 디자인 트렌드 2025",
+            "건축 기술 트렌드 2025"
         ],
         "cost_estimation": [
-            "건축 공사비 트렌드 2024",
-            "건축 원가 분석 2024"
+            "건축 공사비 트렌드 2025",
+            "건축 원가 분석 2025"
         ],
         "mass_strategy": [
-            "건축 매스 전략 2024",
-            "건축 설계 트렌드 2024"
+            "건축 매스 전략 2025",
+            "건축 설계 트렌드 2025"
         ],
-        # 새로 추가된 블록들
         "site_environment_analysis": [
-            "대지 환경 분석 방법론 2024",
+            "대지 환경 분석 방법론 2025",
             "지형 분석 건축 설계 2024",
             "대지 조건 분석 기법"
         ],
         "structure_technology_analysis": [
-            "건축 구조 기술 분석 2024",
+            "건축 구조 기술 분석 2025",
             "구조 시스템 설계 방법론",
             "건축 구조 최적화 기법"
         ],
         "proposal_framework": [
-            "건축 제안서 작성 가이드 2024",
+            "건축 제안서 작성 가이드 2025",
             "제안서 프레임워크 설계",
             "건축 프로젝트 제안서 구조"
         ]
@@ -239,8 +226,18 @@ def convert_dsl_to_prompt(
 ) -> str:
     """완전히 개선된 DSL을 프롬프트로 변환"""
     
+    # 핵심 원칙 블록 로드
+    core_blocks = load_prompt_blocks().get("core", [])
+    core_content = ""
+    if core_blocks:
+        core_content = "\n\n".join([block.get("content", "") for block in core_blocks])
+    
     dsl = dsl_block.get("content_dsl", {})
     prompt_parts = []
+    
+    # 핵심 원칙을 맨 앞에 추가
+    if core_content:
+        prompt_parts.append(f"# 핵심 원칙 및 유의사항\n{core_content}\n")
     
     # 0. 블록 ID 및 제목 명시 (새로 추가)
     block_id = dsl_block.get("id", "")
@@ -688,11 +685,11 @@ BLOCK_FUNCTION_MAPPING = {
     "action_planner": prompt_action_planner,
     "competitor_analyzer": prompt_competitor_analyzer,
     "proposal_framework": prompt_proposal_framework,
-    "hyderabad_campus_expansion_analysis": prompt_hyderabad_campus_expansion_analysis,
-    "hyderabad_research_infra_strategy": prompt_hyderabad_research_infra_strategy,
-    "hyderabad_talent_collaboration_infra": prompt_hyderabad_talent_collaboration_infra,
-    "hyderabad_welfare_branding_environment": prompt_hyderabad_welfare_branding_environment,
-    "hyderabad_security_zoning_plan": prompt_hyderabad_security_zoning_plan,
-    "hyderabad_masterplan_roadmap": prompt_hyderabad_masterplan_roadmap,
+    # "hyderabad_campus_expansion_analysis": prompt_hyderabad_campus_expansion_analysis,
+    # "hyderabad_research_infra_strategy": prompt_hyderabad_research_infra_strategy,
+    # "hyderabad_talent_collaboration_infra": prompt_hyderabad_talent_collaboration_infra,
+    # "hyderabad_welfare_branding_environment": prompt_hyderabad_welfare_branding_environment,
+    # "hyderabad_security_zoning_plan": prompt_hyderabad_security_zoning_plan,
+    # "hyderabad_masterplan_roadmap": prompt_hyderabad_masterplan_roadmap,
 }
 

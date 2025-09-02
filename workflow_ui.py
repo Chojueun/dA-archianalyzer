@@ -10,38 +10,31 @@
 
 import streamlit as st
 import json
-import re
 import time
-import os
 from datetime import datetime
-from agent_executor import execute_agent
 from user_state import get_user_inputs, save_step_result, append_step_history
-from report_generator import generate_pdf_report, generate_word_report
-from webpage_generator import create_webpage_download_button
-from dsl_to_prompt import load_prompt_blocks
 from analysis_system import (
-    AnalysisSystem, PurposeType, ObjectiveType, AnalysisStep, AnalysisWorkflow
+    AnalysisSystem, PurposeType, ObjectiveType, AnalysisWorkflow
 )
 from agent_executor import (
     run_requirement_table,
     run_ai_reasoning,
     run_precedent_comparison,
     run_strategy_recommendation,
-    run_hyderabad_campus_expansion_analysis,
-    run_hyderabad_research_infra_strategy,
-    run_hyderabad_talent_collaboration_infra,
-    run_hyderabad_welfare_branding_environment,
-    run_hyderabad_security_zoning_plan,
-    run_hyderabad_masterplan_roadmap,
+    run_requirement_analyzer,
+    run_document_analyzer,
+    # 하이데라바드 프로젝트 전용 함수들 (일시적으로 비활성화)
+    # run_hyderabad_campus_expansion_analysis,
+    # run_hyderabad_research_infra_strategy,
+    # run_hyderabad_talent_collaboration_infra,
+    # run_hyderabad_welfare_branding_environment,
+    # run_hyderabad_security_zoning_plan,
+    # run_hyderabad_masterplan_roadmap,
 )
-from utils import extract_summary, extract_insight
 from utils_pdf import (
     initialize_vector_system,
     extract_text_from_pdf,
-    save_pdf_chunks_to_chroma,
-    search_pdf_chunks,
     get_pdf_summary,
-    get_pdf_summary_from_session
 )
 from dsl_to_prompt import convert_dsl_to_prompt
 
@@ -2584,6 +2577,84 @@ def render_analysis_workflow():
             # 워크플로우 생성
             workflow = system.suggest_analysis_steps(purpose_enum, objective_enums)
             
+            # 사이드바에 추가 가능한 단계들 표시 (매번 새로 계산)
+            st.sidebar.markdown("### ➕ 추가 선택 가능한 단계")
+            
+            # 프롬프트 블록 로드
+            from dsl_to_prompt import load_prompt_blocks
+            blocks = load_prompt_blocks()
+            extra_blocks = blocks["extra"]
+            
+            # 현재 선택된 단계들 (실시간 계산)
+            current_step_ids = set()
+            if st.session_state.get('editable_steps'):
+                for step in st.session_state.editable_steps:
+                    current_step_ids.add(step.id)
+            
+            # 자동 제안된 단계들 (editable_steps 기준으로 계산)
+            auto_suggested_ids = set()
+            if st.session_state.get('editable_steps'):
+                # editable_steps를 기준으로 auto_suggested_ids 계산
+                auto_suggested_ids.update({step.id for step in st.session_state.editable_steps})
+            elif workflow:
+                # editable_steps가 없을 때만 workflow.steps 사용
+                auto_suggested_ids.update({step.id for step in workflow.steps})
+            
+            # 추가 가능한 단계들 필터링
+            additional_blocks = []
+            for block in extra_blocks:
+                block_id = block["id"]
+                if "hyderabad" in block_id.lower():
+                    continue
+                # editable_steps에 없는 블록들만 추가 가능
+                if block_id not in current_step_ids:
+                    additional_blocks.append(block)
+            
+            st.sidebar.write(f"**디버깅**: additional_blocks 개수 = {len(additional_blocks)}")
+            
+            if additional_blocks:
+                st.sidebar.write("**추가로 선택 가능한 단계**:")
+                
+                for block in additional_blocks:
+                    block_id = block["id"]
+                    
+                    # 선택 가능한 단계
+                    if st.sidebar.button(f"➕ {block['title']}", key=f"add_block_{block_id}_workflow"):
+                        # 단계 추가
+                        from analysis_system import AnalysisStep
+                        
+                        # 권장 순서에 따른 적절한 위치 찾기
+                        cot_order = system._load_recommended_cot_order()
+                        new_step_order = cot_order.get(block_id, 999)  # 기본값을 높게 설정
+                        
+                        new_step = AnalysisStep(
+                            id=block_id,
+                            title=block['title'],
+                            description=block.get('description', ''),
+                            is_optional=True,
+                            order=new_step_order,
+                            category="추가 단계"
+                        )
+                        
+                        # editable_steps에 추가
+                        if 'editable_steps' not in st.session_state:
+                            st.session_state.editable_steps = []
+                        
+                        st.session_state.editable_steps.append(new_step)
+                        
+                        # 권장 순서로 재정렬
+                        sorted_steps = system.sort_steps_by_recommended_order(st.session_state.editable_steps)
+                        for i, step in enumerate(sorted_steps, 1):
+                            step.order = i
+                        
+                        st.session_state.editable_steps = sorted_steps
+                        
+                        # 성공 메시지 표시
+                        st.sidebar.success(f"'{block['title']}' 단계가 추가되었습니다!")
+                        st.rerun()
+            else:
+                st.sidebar.info("모든 관련 단계가 자동으로 선택되었습니다.")
+            
             # 제안된 단계들 표시 및 편집 기능
             st.subheader("2단계: 분석 단계 편집")
             st.info("제안된 단계들을 자유롭게 편집할 수 있습니다:")
@@ -2614,6 +2685,7 @@ def render_analysis_workflow():
                     with col_b:
                         if st.button("❌ 제거", key=f"remove_{step.id}_workflow"):
                             st.session_state.editable_steps.pop(i)
+                            st.session_state.sidebar_updated = True
                             st.rerun()
                     
                     with col_c:
@@ -2745,19 +2817,19 @@ def execute_analysis_step(step_id: str, full_prompt: str) -> str:
         return run_requirement_analyzer(full_prompt)
     # ... existing blocks ...
     
-    # 하이데라바드 프로젝트 전용 블록들 추가
-    elif step_id == "hyderabad_campus_expansion_analysis":
-        return run_hyderabad_campus_expansion_analysis(full_prompt)
-    elif step_id == "hyderabad_research_infra_strategy":
-        return run_hyderabad_research_infra_strategy(full_prompt)
-    elif step_id == "hyderabad_talent_collaboration_infra":
-        return run_hyderabad_talent_collaboration_infra(full_prompt)
-    elif step_id == "hyderabad_welfare_branding_environment":
-        return run_hyderabad_welfare_branding_environment(full_prompt)
-    elif step_id == "hyderabad_security_zoning_plan":
-        return run_hyderabad_security_zoning_plan(full_prompt)
-    elif step_id == "hyderabad_masterplan_roadmap":
-        return run_hyderabad_masterplan_roadmap(full_prompt)
+    # 하이데라바드 프로젝트 전용 블록들 (일시적으로 비활성화)
+    # elif step_id == "hyderabad_campus_expansion_analysis":
+    #     return run_hyderabad_campus_expansion_analysis(full_prompt)
+    # elif step_id == "hyderabad_research_infra_strategy":
+    #     return run_hyderabad_research_infra_strategy(full_prompt)
+    # elif step_id == "hyderabad_talent_collaboration_infra":
+    #     return run_hyderabad_talent_collaboration_infra(full_prompt)
+    # elif step_id == "hyderabad_welfare_branding_environment":
+    #     return run_hyderabad_welfare_branding_environment(full_prompt)
+    # elif step_id == "hyderabad_security_zoning_plan":
+    #     return run_hyderabad_security_zoning_plan(full_prompt)
+    # elif step_id == "hyderabad_masterplan_roadmap":
+    #     return run_hyderabad_masterplan_roadmap(full_prompt)
     
     else:
         return f"⚠️ 알 수 없는 분석 단계: {step_id}"

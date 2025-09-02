@@ -60,8 +60,9 @@ def clean_text_for_pdf(text):
     text = text.replace('—', '-')  # em dash
     text = text.replace('"', '"')  # smart quotes
     text = text.replace('"', '"')  # smart quotes
+    text = text.replace(''', "'")  
     text = text.replace(''', "'")  # smart apostrophe
-    text = text.replace(''', "'")  # smart apostrophe
+    text = text.replace('**', '**')  # smart quotes
     
     # 표 관련 특수 문자 처리
     text = text.replace('│', '|')  # box drawing characters
@@ -392,14 +393,14 @@ def create_table_with_improved_style(table_data, font_registered):
             ('RIGHTPADDING', (0, 0), (-1, -1), 4),
             ('FONTSIZE', (0, 0), (-1, -1), 8),
             ('WORDWRAP', (0, 0), (-1, -1), True),  # 자동 줄바꿈 활성화
-            ('ROWBACKGROUNDS', (0, 0), (-1, -1), [colors.white, colors.HexColor('#F8F9FA')]),  # 줄무늬 배경
+            # ('ROWBACKGROUNDS', (0, 0), (-1, -1), [colors.white, colors.HexColor('#F8F9FA')]),  # 줄무늬 배경 제거
         ])
         
         # 헤더 스타일 추가
         if has_header and len(paragraph_data) > 0:
             try:
-                table_style.add('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#2E86AB'))
-                table_style.add('TEXTCOLOR', (0, 0), (-1, 0), colors.white)
+                table_style.add('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#F8F9FA'))  # 헤더를 연한 회색으로
+                table_style.add('TEXTCOLOR', (0, 0), (-1, 0), colors.black)  # 헤더 텍스트를 검은색으로
                 table_style.add('FONTWEIGHT', (0, 0), (-1, 0), 'bold')
             except Exception as e:
                 # 헤더 스타일링 실패 시 기본 스타일만 적용

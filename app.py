@@ -1,26 +1,14 @@
 
 # app.py
 import streamlit as st
-import os
 import time
 from dsl_to_prompt import load_prompt_blocks
 from user_state import (
-    init_user_state, get_user_inputs, save_step_result, append_step_history, get_current_step_index,
-    save_user_data, save_current_project, load_project, get_user_project_list
+    init_user_state, save_user_data, save_current_project, 
+    load_project, get_user_project_list
 )
-from summary_generator import summarize_pdf, extract_site_analysis_fields, analyze_pdf_in_chunks
-from utils_pdf import save_pdf_chunks_to_chroma, get_pdf_summary_from_session, set_pdf_summary_to_session
-from utils import extract_summary, extract_insight
-# DSPy import 제거 - 필요할 때만 import
-# from init_dspy import *
-from dsl_to_prompt import (
-    convert_dsl_to_prompt, prompt_requirement_table, prompt_ai_reasoning,
-    prompt_precedent_comparison, prompt_strategy_recommendation
-)
-from agent_executor import (
-    run_requirement_table, run_ai_reasoning,
-    run_precedent_comparison, run_strategy_recommendation
-)
+from summary_generator import analyze_pdf_in_chunks
+from utils_pdf import save_pdf_chunks_to_chroma, set_pdf_summary_to_session
 from PIL import Image
 from auth_system import init_auth, login_page, admin_panel, logout
 from analysis_system import AnalysisStep, AnalysisSystem
@@ -302,108 +290,108 @@ with st.expander("프로젝트 정보 입력", expanded=st.session_state.get('sh
         st.rerun()
 
 # ─── 사이드바에 추가 선택 가능한 단계들 (프로젝트 정보 완료 후 표시) ─────────────────────────
-if not st.session_state.get('show_project_info', True):
-    st.sidebar.markdown("### 추가 선택 가능한 단계")
-    
-    # 프롬프트 블록 로드
-    from dsl_to_prompt import load_prompt_blocks
-    blocks = load_prompt_blocks()
-    extra_blocks = blocks["extra"]
-    
-    # 현재 선택된 단계들 (editable_steps 기준으로 확인)
-    current_step_ids = set()
-    if st.session_state.get('editable_steps'):
-        for step in st.session_state.editable_steps:
-            current_step_ids.add(step.id)
-    elif st.session_state.get('workflow_steps'):
-        for step in st.session_state.workflow_steps:
-            current_step_ids.add(step.id)
-    
-    # 추가된 단계들도 포함
-    added_step_ids = st.session_state.get('added_steps', set())
-    current_step_ids.update(added_step_ids)
-    
-    # 자동 제안된 단계들 (제외)
-    auto_suggested_ids = set()
-    if st.session_state.get('current_workflow'):
-        from analysis_system import AnalysisSystem
-        system = AnalysisSystem()
-        selected_purpose = st.session_state.get('selected_purpose')
-        selected_objectives = st.session_state.get('selected_objectives', [])
-        
-        if selected_purpose and selected_objectives:
-            # 용도별 권장 단계들
-            purpose_enum = None
-            for purpose in system.recommended_steps.keys():
-                if purpose.value == selected_purpose:
-                    purpose_enum = purpose
-                    break
-            
-            if purpose_enum:
-                auto_suggested_ids.update({step.id for step in system.recommended_steps[purpose_enum]})
-    
-    # 자동 제안되지 않은 추가 선택 가능한 단계들만 필터링
-    additional_blocks = []
-    for block in extra_blocks:
-        block_id = block["id"]
-        if block_id not in auto_suggested_ids and block_id not in current_step_ids:
-            additional_blocks.append(block)
-    
-    if additional_blocks:
-        st.sidebar.write("**추가로 선택 가능한 단계**:")
-        
-        for block in additional_blocks:
-            block_id = block["id"]
-            
-            # 선택 가능한 단계
-            if st.sidebar.button(f"➕ {block['title']}", key=f"add_block_{block_id}"):
-                # 단계 추가
-                from analysis_system import AnalysisSystem, AnalysisStep
-                system = AnalysisSystem()
-                cot_order = system._load_recommended_cot_order()
-                
-                # 권장 순서에 따른 적절한 위치 찾기
-                new_step_order = cot_order.get(block_id, 999)  # 기본값을 높게 설정
-                
-                new_step = AnalysisStep(
-                    id=block_id,
-                    title=block['title'],
-                    description=block.get('description', ''),
-                    is_optional=True,
-                    order=new_step_order,
-                    category="추가 단계"
-                )
-                
-                # editable_steps에 추가 (메인 편집 인터페이스에 반영)
-                if 'editable_steps' not in st.session_state:
-                    st.session_state.editable_steps = []
-                
-                st.session_state.editable_steps.append(new_step)
-                
-                # workflow_steps에도 추가 (동기화)
-                if 'workflow_steps' not in st.session_state:
-                    st.session_state.workflow_steps = []
-                
-                st.session_state.workflow_steps.append(new_step)
-                
-                # 권장 순서로 재정렬 (editable_steps 기준)
-                sorted_steps = system.sort_steps_by_recommended_order(st.session_state.editable_steps)
-                for i, step in enumerate(sorted_steps, 1):
-                    step.order = i
-                
-                # 두 리스트 모두 업데이트
-                st.session_state.editable_steps = sorted_steps
-                st.session_state.workflow_steps = sorted_steps.copy()
-                
-                # 성공 메시지 표시 (rerun 없이)
-                st.sidebar.success(f"'{block['title']}' 단계가 권장 순서에 맞게 추가되었습니다!")
-                
-                # 추가된 단계 ID를 저장
-                if 'added_steps' not in st.session_state:
-                    st.session_state.added_steps = set()
-                st.session_state.added_steps.add(block_id)
-    else:
-        st.sidebar.info("모든 관련 단계가 자동으로 선택되었습니다.")
+# if not st.session_state.get('show_project_info', True):
+#     st.sidebar.markdown("### 추가 선택 가능한 단계")
+#     
+#     # 프롬프트 블록 로드
+#     from dsl_to_prompt import load_prompt_blocks
+#     blocks = load_prompt_blocks()
+#     extra_blocks = blocks["extra"]
+#     
+#     # 현재 선택된 단계들 (editable_steps 기준으로 확인)
+#     current_step_ids = set()
+#     if st.session_state.get('editable_steps'):
+#         for step in st.session_state.editable_steps:
+#             current_step_ids.add(step.id)
+#     elif st.session_state.get('workflow_steps'):
+#         for step in st.session_state.workflow_steps:
+#             current_step_ids.add(step.id)
+#     
+#     # 추가된 단계들도 포함
+#     added_step_ids = st.session_state.get('added_steps', set())
+#     current_step_ids.update(added_step_ids)
+#     
+#     # 자동 제안된 단계들 (제외)
+#     auto_suggested_ids = set()
+#     if st.session_state.get('current_workflow'):
+#         from analysis_system import AnalysisSystem
+#         system = AnalysisSystem()
+#         selected_purpose = st.session_state.get('selected_purpose')
+#         selected_objectives = st.session_state.get('selected_objectives', [])
+#         
+#         if selected_purpose and selected_objectives:
+#             # 용도별 권장 단계들
+#             purpose_enum = None
+#             for purpose in system.recommended_steps.keys():
+#                 if purpose.value == selected_purpose:
+#                     purpose_enum = purpose
+#                     break
+#             
+#             if purpose_enum:
+#                 auto_suggested_ids.update({step.id for step in system.recommended_steps[purpose_enum]})
+#     
+#     # 자동 제안되지 않은 추가 선택 가능한 단계들만 필터링
+#     additional_blocks = []
+#     for block in extra_blocks:
+#         block_id = block["id"]
+#         if block_id not in auto_suggested_ids and block_id not in current_step_ids:
+#             additional_blocks.append(block)
+#     
+#     if additional_blocks:
+#         st.sidebar.write("**추가로 선택 가능한 단계**:")
+#         
+#         for block in additional_blocks:
+#             block_id = block["id"]
+#             
+#             # 선택 가능한 단계
+#             if st.sidebar.button(f"➕ {block['title']}", key=f"add_block_{block_id}"):
+#                 # 단계 추가
+#                 from analysis_system import AnalysisSystem, AnalysisStep
+#                 system = AnalysisSystem()
+#                 cot_order = system._load_recommended_cot_order()
+#                 
+#                 # 권장 순서에 따른 적절한 위치 찾기
+#                 new_step_order = cot_order.get(block_id, 999)  # 기본값을 높게 설정
+#                 
+#                 new_step = AnalysisStep(
+#                     id=block_id,
+#                     title=block['title'],
+#                     description=block.get('description', ''),
+#                     is_optional=True,
+#                     order=new_step_order,
+#                     category="추가 단계"
+#                 )
+#                 
+#                 # editable_steps에 추가 (메인 편집 인터페이스에 반영)
+#                 if 'editable_steps' not in st.session_state:
+#                     st.session_state.editable_steps = []
+#                 
+#                 st.session_state.editable_steps.append(new_step)
+#                 
+#                 # workflow_steps에도 추가 (동기화)
+#                 if 'workflow_steps' not in st.session_state:
+#                     st.session_state.workflow_steps = []
+#                 
+#                 st.session_state.workflow_steps.append(new_step)
+#                 
+#                 # 권장 순서로 재정렬 (editable_steps 기준)
+#                 sorted_steps = system.sort_steps_by_recommended_order(st.session_state.editable_steps)
+#                 for i, step in enumerate(sorted_steps, 1):
+#                     step.order = i
+#                 
+#                 # 두 리스트 모두 업데이트
+#                 st.session_state.editable_steps = sorted_steps
+#                 st.session_state.workflow_steps = sorted_steps.copy()
+#                 
+#                 # 성공 메시지 표시 (rerun 없이)
+#                 st.sidebar.success(f"'{block['title']}' 단계가 권장 순서에 맞게 추가되었습니다!")
+#                 
+#                 # 추가된 단계 ID를 저장
+#                 if 'added_steps' not in st.session_state:
+#                     st.session_state.added_steps = set()
+#                 st.session_state.added_steps.add(block_id)
+#     else:
+#         st.sidebar.info("모든 관련 단계가 자동으로 선택되었습니다.")
 
 # ─── 권장 CoT 순서 설명 ─────────────────────────
 with st.expander("권장 CoT 순서 가이드", expanded=False):

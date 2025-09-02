@@ -4,7 +4,8 @@ from dspy import Module, Signature, InputField, OutputField
 from dspy.teleprompt.bootstrap import BootstrapFewShot
 from dspy.predict.react import ReAct
 # 순환 import 방지를 위해 필요한 함수만 import
-from init_dspy import execute_with_sdk, execute_with_sdk_with_retry, get_optimal_model
+# Narrative 전용 모델 사용
+from init_dspy import execute_with_sdk, execute_with_sdk_with_retry, get_narrative_optimal_model
 import time
 import random
 
@@ -348,9 +349,7 @@ def execute_agent(prompt):
 def generate_narrative(prompt):
     """Narrative 생성 함수 - 개선된 버전"""
     def _run():
-        # Narrative 전용 모델 사용
-        from init_dspy import get_narrative_optimal_model, execute_with_sdk_with_retry
-        
+                
         # 직접 SDK 호출로 더 나은 성능
         result = execute_with_sdk_with_retry(prompt, get_narrative_optimal_model(), max_retries=3)
         
@@ -643,118 +642,118 @@ def run_proposal_framework(full_prompt):
     
     return execute_with_retry(_run)
 
-# --- 하이데라바드 프로젝트 전용 블록들을 위한 Signature & ReAct 클래스들
-class HyderabadCampusExpansionAnalysisSignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_campus_expansion_analysis = OutputField(desc="하이데라바드 캠퍼스 확장성 분석 결과. 확장 시나리오, 우선순위, ROI 분석")
+# # --- 하이데라바드 프로젝트 전용 블록들을 위한 Signature & ReAct 클래스들
+# class HyderabadCampusExpansionAnalysisSignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_campus_expansion_analysis = OutputField(desc="하이데라바드 캠퍼스 확장성 분석 결과. 확장 시나리오, 우선순위, ROI 분석")
 
-class HyderabadCampusExpansionAnalysisReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadCampusExpansionAnalysisSignature)
+# class HyderabadCampusExpansionAnalysisReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadCampusExpansionAnalysisSignature)
 
-class HyderabadResearchInfraStrategySignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_research_infra_strategy = OutputField(desc="하이데라바드 연구 인프라 전략. 기능별 필요면적, 확충 계획, 단계별 로드맵")
+# class HyderabadResearchInfraStrategySignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_research_infra_strategy = OutputField(desc="하이데라바드 연구 인프라 전략. 기능별 필요면적, 확충 계획, 단계별 로드맵")
 
-class HyderabadResearchInfraStrategyReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadResearchInfraStrategySignature)
+# class HyderabadResearchInfraStrategyReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadResearchInfraStrategySignature)
 
-class HyderabadTalentCollaborationInfraSignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_talent_collaboration_infra = OutputField(desc="하이데라바드 인재 육성 및 협업 인프라. 교육 공간, 이노베이션 센터, 브랜딩 효과")
+# class HyderabadTalentCollaborationInfraSignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_talent_collaboration_infra = OutputField(desc="하이데라바드 인재 육성 및 협업 인프라. 교육 공간, 이노베이션 센터, 브랜딩 효과")
 
-class HyderabadTalentCollaborationInfraReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadTalentCollaborationInfraSignature)
+# class HyderabadTalentCollaborationInfraReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadTalentCollaborationInfraSignature)
 
-class HyderabadWelfareBrandingEnvironmentSignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_welfare_branding_environment = OutputField(desc="하이데라바드 복지 및 브랜드 환경. 편의시설, 브랜드 경험, 사용자 만족도")
+# class HyderabadWelfareBrandingEnvironmentSignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_welfare_branding_environment = OutputField(desc="하이데라바드 복지 및 브랜드 환경. 편의시설, 브랜드 경험, 사용자 만족도")
 
-class HyderabadWelfareBrandingEnvironmentReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadWelfareBrandingEnvironmentSignature)
+# class HyderabadWelfareBrandingEnvironmentReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadWelfareBrandingEnvironmentSignature)
 
-class HyderabadSecurityZoningPlanSignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_security_zoning_plan = OutputField(desc="하이데라바드 보안 및 존잉 계획. 보안등급, 위험요인, 대응방안")
+# class HyderabadSecurityZoningPlanSignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_security_zoning_plan = OutputField(desc="하이데라바드 보안 및 존잉 계획. 보안등급, 위험요인, 대응방안")
 
-class HyderabadSecurityZoningPlanReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadSecurityZoningPlanSignature)
+# class HyderabadSecurityZoningPlanReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadSecurityZoningPlanSignature)
 
-class HyderabadMasterplanRoadmapSignature(Signature):
-    input = InputField(desc="분석 목표, PDF, 맥락 등")
-    hyderabad_masterplan_roadmap = OutputField(desc="하이데라바드 마스터플랜 로드맵. 단계별 실행계획, ROI 분석, 종합 전략")
+# class HyderabadMasterplanRoadmapSignature(Signature):
+#     input = InputField(desc="분석 목표, PDF, 맥락 등")
+#     hyderabad_masterplan_roadmap = OutputField(desc="하이데라바드 마스터플랜 로드맵. 단계별 실행계획, ROI 분석, 종합 전략")
 
-class HyderabadMasterplanRoadmapReAct(ReAct):
-    def __init__(self):
-        super().__init__(HyderabadMasterplanRoadmapSignature)
+# class HyderabadMasterplanRoadmapReAct(ReAct):
+#     def __init__(self):
+#         super().__init__(HyderabadMasterplanRoadmapSignature)
 
-# --- 하이데라바드 프로젝트 전용 블록들을 위한 실행 함수들
-def run_hyderabad_campus_expansion_analysis(full_prompt):
-    """하이데라바드 캠퍼스 확장성 분석 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadCampusExpansionAnalysisSignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_campus_expansion_analysis", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 캠퍼스 확장성 분석이 정상적으로 생성되지 않았습니다."
-        return value
+# # --- 하이데라바드 프로젝트 전용 블록들을 위한 실행 함수들
+# def run_hyderabad_campus_expansion_analysis(full_prompt):
+#     """하이데라바드 캠퍼스 확장성 분석 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadCampusExpansionAnalysisSignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_campus_expansion_analysis", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 캠퍼스 확장성 분석이 정상적으로 생성되지 않았습니다."
+#         return value
     
-    return execute_with_retry(_run)
+#     return execute_with_retry(_run)
 
-def run_hyderabad_research_infra_strategy(full_prompt):
-    """하이데라바드 연구 인프라 전략 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadResearchInfraStrategySignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_research_infra_strategy", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 연구 인프라 전략이 정상적으로 생성되지 않았습니다."
-        return value
+# def run_hyderabad_research_infra_strategy(full_prompt):
+#     """하이데라바드 연구 인프라 전략 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadResearchInfraStrategySignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_research_infra_strategy", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 연구 인프라 전략이 정상적으로 생성되지 않았습니다."
+#         return value
     
-    return execute_with_retry(_run)
+#     return execute_with_retry(_run)
 
-def run_hyderabad_talent_collaboration_infra(full_prompt):
-    """하이데라바드 인재 육성 및 협업 인프라 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadTalentCollaborationInfraSignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_talent_collaboration_infra", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 인재 육성 및 협업 인프라가 정상적으로 생성되지 않았습니다."
-        return value
+# def run_hyderabad_talent_collaboration_infra(full_prompt):
+#     """하이데라바드 인재 육성 및 협업 인프라 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadTalentCollaborationInfraSignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_talent_collaboration_infra", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 인재 육성 및 협업 인프라가 정상적으로 생성되지 않았습니다."
+#         return value
     
-    return execute_with_retry(_run)
+#     return execute_with_retry(_run)
 
-def run_hyderabad_welfare_branding_environment(full_prompt):
-    """하이데라바드 복지 및 브랜드 환경 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadWelfareBrandingEnvironmentSignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_welfare_branding_environment", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 복지 및 브랜드 환경이 정상적으로 생성되지 않았습니다."
-        return value
+# def run_hyderabad_welfare_branding_environment(full_prompt):
+#     """하이데라바드 복지 및 브랜드 환경 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadWelfareBrandingEnvironmentSignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_welfare_branding_environment", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 복지 및 브랜드 환경이 정상적으로 생성되지 않았습니다."
+#         return value
     
-    return execute_with_retry(_run)
+#     return execute_with_retry(_run)
 
-def run_hyderabad_security_zoning_plan(full_prompt):
-    """하이데라바드 보안 및 존잉 계획 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadSecurityZoningPlanSignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_security_zoning_plan", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 보안 및 존잉 계획이 정상적으로 생성되지 않았습니다."
-        return value
+# def run_hyderabad_security_zoning_plan(full_prompt):
+#     """하이데라바드 보안 및 존잉 계획 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadSecurityZoningPlanSignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_security_zoning_plan", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 보안 및 존잉 계획이 정상적으로 생성되지 않았습니다."
+#         return value
     
-    return execute_with_retry(_run)
+#     return execute_with_retry(_run)
 
-def run_hyderabad_masterplan_roadmap(full_prompt):
-    """하이데라바드 마스터플랜 로드맵 실행 함수"""
-    def _run():
-        result = dspy.Predict(HyderabadMasterplanRoadmapSignature)(input=full_prompt)
-        value = getattr(result, "hyderabad_masterplan_roadmap", "")
-        if not value or value.strip() == "" or "error" in value.lower():
-            return "⚠️ 결과 생성 실패: 하이데라바드 마스터플랜 로드맵이 정상적으로 생성되지 않았습니다."
-        return value
+# def run_hyderabad_masterplan_roadmap(full_prompt):
+#     """하이데라바드 마스터플랜 로드맵 실행 함수"""
+#     def _run():
+#         result = dspy.Predict(HyderabadMasterplanRoadmapSignature)(input=full_prompt)
+#         value = getattr(result, "hyderabad_masterplan_roadmap", "")
+#         if not value or value.strip() == "" or "error" in value.lower():
+#             return "⚠️ 결과 생성 실패: 하이데라바드 마스터플랜 로드맵이 정상적으로 생성되지 않았습니다."
+#         return value
     
     return execute_with_retry(_run)

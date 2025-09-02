@@ -948,13 +948,13 @@ class AnalysisSystem:
             "structure_technology_analysis": 21, # 구조 기술 분석
             "proposal_framework": 22,          # 제안서 프레임워크
             
-            # 하이데라바드 프로젝트 전용 블록들 추가
-            "hyderabad_campus_expansion_analysis": 23,
-            "hyderabad_research_infra_strategy": 24,
-            "hyderabad_talent_collaboration_infra": 25,
-            "hyderabad_welfare_branding_environment": 26,
-            "hyderabad_security_zoning_plan": 27,
-            "hyderabad_masterplan_roadmap": 28
+            # 하이데라바드 프로젝트 전용 블록들 (일시적으로 비활성화)
+            # "hyderabad_campus_expansion_analysis": 23,
+            # "hyderabad_research_infra_strategy": 24,
+            # "hyderabad_talent_collaboration_infra": 25,
+            # "hyderabad_welfare_branding_environment": 26,
+            # "hyderabad_security_zoning_plan": 27,
+            # "hyderabad_masterplan_roadmap": 28
         }
 
     def sort_steps_by_recommended_order(self, steps: List[AnalysisStep]) -> List[AnalysisStep]:
