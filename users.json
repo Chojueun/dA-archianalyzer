@@ -4,5 +4,11 @@
     "role": "admin",
     "created_at": "2025-08-11T13:35:45.159102",
     "last_login": "2025-08-27T14:10:13.346087"
+  },
+  "da1560": {
+    "password": "$2b$12$1cO65gt8Rm6/cciu/4v5x.w6eWYEIdW4BOMeYW9I5X5XvYE1BEa/u",
+    "role": "user",
+    "created_at": "2025-09-02T09:06:29.114085",
+    "last_login": "2025-09-02T10:29:59.120649"
   }
 }
